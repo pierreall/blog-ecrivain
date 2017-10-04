@@ -43,10 +43,11 @@ class Autoloader {
 
 
  static function register(){
-        spl_autoload_register([__CLASS__, 'autoload']);
+     spl_autoload_extensions('.php');
+        spl_autoload_register();
     }
-
-    static function autoload($class_name){
+//spl_autoload_register([__CLASS__, 'autoload']);
+    /*static function autoload($class_name){
 //       require( __DIR__ . DIRECTORY_SEPARATOR. $class_name . '.php');
         echo 'classe_name ='.$class_name . '<br>';
 //
@@ -55,7 +56,7 @@ class Autoloader {
 //      require(__NAMESPACE__.$class_name.'.php');
         require $class_name. '.php';
 
-  }
+  }*/
 
 
 
