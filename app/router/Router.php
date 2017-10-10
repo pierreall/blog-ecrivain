@@ -1,8 +1,10 @@
 <?php
 namespace App\Router;
 
-use App\Controler\BilletControler;
 use App\Controler\ErreurControler;
+use App\Controler\BilletControler;
+use App\Controler\CommentaireControler;
+use App\Controler\UtilisateurControler;
 
 class Router
 {
@@ -31,13 +33,15 @@ class Router
         $this->controller = $explose[2];
         $this->method = $explose[3];
 
-        $className = ucfirst($explose[2]).'Controler';
-echo __NAMESPACE__;
+        $className = 'App\Controler\\'.ucfirst($explose[2]).'Controler';
+
         if (class_exists($className)){
             $this->controller = new $className();
 //            $this->controller->{$this->method .'()'};
 //            call_user_func($this->method, 1);
-            $this->controller->affichage(1);
+//            $this->controller->affichage(1);
+            $method = $this->method;
+            $this->controller->$method();
         }
         else {
             $this->controller = new ErreurControler();
