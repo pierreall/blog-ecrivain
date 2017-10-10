@@ -22,6 +22,8 @@ class BilletControler
 
     public function affichage($id_post){
         $this->billet->read();
+        echo 'appel de la méthode '. __METHOD__ .' <br> paramètre = '.$id_post;
+
     }
 
     public function miseAJour(){

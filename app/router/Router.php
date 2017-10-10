@@ -32,6 +32,7 @@ class Router
 
         $this->controller = $explose[2];
         $this->method = $explose[3];
+        $this->param = $explose[4];
 
         $className = 'App\Controler\\'.ucfirst($explose[2]).'Controler';
 
@@ -44,7 +45,8 @@ class Router
             $method = $this->method;
             if(method_exists($this->controller, $method)){
 
-                $this->controller->$method();
+                $this->controller->$method($this->param);
+
             }
             else {
                 ErreurControler::methodNoExist();
