@@ -1,6 +1,7 @@
 <?php
 namespace App\Model;
 
+
 class Model
 {
    protected $pdo;
@@ -10,7 +11,7 @@ public function __construct(){
     {
         $this->pdo = new \PDO('mysql:host=localhost;dbname=testcourphp', 'root', '');
     }
-    catch (Exception $e)
+    catch (\Exception $e)
     {
         die ('Erreur :'.$e->getMessage());
     }
