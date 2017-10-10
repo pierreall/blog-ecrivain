@@ -70,25 +70,25 @@ class BilletDAO extends Model implements DAO
 //methods
     public function create ()
     {
-        $req = getPDO()->prepare('INSERT INTO billet (dateBillet, titre, contenu, auteur ) VALUES (?, ?, ?, ?)');
+        $req = $this->getPDO()->prepare('INSERT INTO billet (dateBillet, titre, contenu, auteur ) VALUES (?, ?, ?, ?)');
         return $req->execute(array($date, $titre, $contenu,$auteur));
 
     }
 
     public function read ()
     {
-        $req = getPDO()->query('SELECT * FROM billet WHERE id = $this->_id');
+        $req = $this->getPDO()->query('SELECT * FROM billet WHERE id = $this->_id');
     }
 
     public function update ()
     {
-        $req = getPDO()->prepare('UPDATE billet SET ? = ? WHERE id = $this->_id');
+        $req = $this->getPDO()->prepare('UPDATE billet SET ? = ? WHERE id = $this->_id');
         $req->execute(array($column, $value));
     }
 
     public function delete ()
     {
-        $req = getPDO()->query('DELETE FROM billet WHERE id = $this->_id');
+        $req = $this->getPDO()->query('DELETE FROM billet WHERE id = $this->_id');
 
     }
 }
