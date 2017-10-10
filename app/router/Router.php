@@ -40,8 +40,15 @@ class Router
 //            $this->controller->{$this->method .'()'};
 //            call_user_func($this->method, 1);
 //            $this->controller->affichage(1);
+
             $method = $this->method;
-            $this->controller->$method();
+            if(method_exists($this->controller, $method)){
+
+                $this->controller->$method();
+            }
+            else {
+                ErreurControler::methodNoExist();
+            }
         }
         else {
             $this->controller = new ErreurControler();

@@ -10,4 +10,8 @@ class ErreurControler {
 //        require '../vue/Erreur.php';
     }
 
+   static public function methodNoExist(){
+        echo 'la méthode n\'existe pas';
+    }
+
 }
