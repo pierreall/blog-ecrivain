@@ -8,6 +8,13 @@ class ErreurControler {
     {
         echo 'oups rien trouvé !';
 //        require '../vue/Erreur.php';
+
+        ob_start();
+        include 'app/vue/Erreur.php';
+        ob_end_clean();
+
+
+
     }
 
    static public function methodNoExist(){

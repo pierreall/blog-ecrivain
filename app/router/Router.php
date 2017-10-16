@@ -47,6 +47,7 @@ class Router
 
                 $this->controller->$method($this->param);
 
+
             }
             else {
                 ErreurControler::methodNoExist();

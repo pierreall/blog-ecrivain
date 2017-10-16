@@ -1,6 +1,7 @@
 <?php
 use App\Autoloader;
 use App\Router\Router;
+//use App\Model\Model;
 use App\Controler\BilletControler;
 //require_once "model/Model.php";
 //require "router/Router.php";
@@ -12,9 +13,9 @@ use App\Controler\BilletControler;
  require 'App/Autoloader.php';
 
  Autoloader::register();
-//$model = new Model();
 
 $routeur = new Router();
+//$model = new Model();
 
 //$controler = $routeur->getController();
 //var_dump($controler);

@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Controler;
-use App\model\DAO\BilletDAO;
+use App\Model\DAO\BilletDAO;
+use  App\Vue\BilletAffichageVue;
+
 
 
 class BilletControler
@@ -16,13 +18,21 @@ class BilletControler
 
     public function ajout(){
         echo 'appel de la méthode '. __METHOD__;
-        $this->billet->read();
+        $this->billet->create();
+
 
     }
 
     public function affichage($id_post){
-        $this->billet->read();
+        if(isset($id_post)){
+            $this->billet->read($id_post);
+
+            include 'App\Vue\BilletAffichageVue.php';
+        }
+
         echo 'appel de la méthode '. __METHOD__ .' <br> paramètre = '.$id_post;
+
+
 
     }
 

@@ -70,25 +70,35 @@ class BilletDAO extends Model implements DAO
 //methods
     public function create ()
     {
-        $req = $this->getPDO()->prepare('INSERT INTO billet (dateBillet, titre, contenu, auteur ) VALUES (?, ?, ?, ?)');
-        return $req->execute(array($date, $titre, $contenu,$auteur));
+        $titre = htmlspecialchars($_POST['titre']);
+        $contenu = htmlspecialchars($_POST['contenu']);
+        $auteur = htmlspecialchars($_POST['auteur']);
+
+
+        $req = $this->getPDO()->prepare('INSERT INTO billet (titre, contenu, auteur ) VALUES (?, ?, ?)');
+        return $req->execute(array($titre, $contenu,$auteur));
 
     }
 
-    public function read ()
+    public function read ($id_post)
     {
-        $req = $this->getPDO()->query('SELECT * FROM billet WHERE id = $this->_id');
+        $req = $this->getPDO()->prepare('SELECT * FROM billet WHERE id = ?');
+       $req->execute(array($id_post));
+       $donneeBilletRead = $req->fetch();
     }
 
     public function update ()
     {
-        $req = $this->getPDO()->prepare('UPDATE billet SET ? = ? WHERE id = $this->_id');
-        $req->execute(array($column, $value));
+        $req = $this->getPDO()->prepare('UPDATE billet SET ? = ? WHERE id = ?');
+        $req->execute(array($column, $value, $this->getId()));
     }
 
     public function delete ()
     {
-        $req = $this->getPDO()->query('DELETE FROM billet WHERE id = $this->_id');
+        $req = $this->getPDO()->query('DELETE FROM billet WHERE id = ?');
+        $req->execute(array($this->getId()));
 
     }
+
 }
+

@@ -15,14 +15,14 @@ use App\Model\DAO\BilletDAO;
     <div class="row">
         <div class="col-lg-12">
             <p class="contenu">
-                <?php echo $get['contenu']; ?>
+                <?php echo $donneeBilletRead['contenu']; ?>
             </p>
         </div>
     </div>
 <div class="row">
     <div class="col-lg-12">
         <auteur>
-            <?php echo $get['auteur']; ?>
+            <?php echo $donneeBilletRead['auteur']; ?>
         </auteur>
     </div>
 </div>
@@ -33,7 +33,6 @@ use App\Model\DAO\BilletDAO;
         </date>
     </div>
 </div>
-
 <?php $contenu = ob_get_clean(); ?>
 
 <?php include 'gabarit.php'; ?>
