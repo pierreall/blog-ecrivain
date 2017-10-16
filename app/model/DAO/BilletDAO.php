@@ -82,20 +82,26 @@ class BilletDAO extends Model implements DAO
 
     public function read ($id_post)
     {
-        $req = $this->getPDO()->prepare('SELECT * FROM billet WHERE id = ?');
+        $req = $this->getPDO()->prepare('SELECT * FROM billet WHERE id_billet = ?');
        $req->execute(array($id_post));
        $donneeBilletRead = $req->fetch();
     }
 
+//    public function readAll ()
+//    {
+//        $req = $this->getPDO()->query('SELECT * FROM billet');
+//        $donneeBilletReadAll = $req->fetch();
+//    }
+
     public function update ()
     {
-        $req = $this->getPDO()->prepare('UPDATE billet SET ? = ? WHERE id = ?');
+        $req = $this->getPDO()->prepare('UPDATE billet SET ? = ? WHERE id_billet = ?');
         $req->execute(array($column, $value, $this->getId()));
     }
 
     public function delete ()
     {
-        $req = $this->getPDO()->query('DELETE FROM billet WHERE id = ?');
+        $req = $this->getPDO()->query('DELETE FROM billet WHERE id_billet = ?');
         $req->execute(array($this->getId()));
 
     }
