@@ -29,12 +29,31 @@ class Router
 
         $explose[0] == '';
         $explose[1] == '';
-
-        $this->controller = $explose[2];
+if($explose[2] == null || $explose[2] == ''){
+    $this->controller = 'billet';
+    $this->method = 'affichage';
+    $this->param = 0;
+}
+else{
+    $this->controller = $explose[2];
+    if($explose[3] == null || $explose[3] == ''){
+        $this->method = 'affichage';
+        $this->param = 0;
+    }
+    else {
         $this->method = $explose[3];
-        $this->param = $explose[4];
+        if($explose[4] == null || $explose[4] == ''){
+            $this->param = 0;
+        }
+        else {
+            $this->param = $explose[4];
+        }
 
-        $className = 'App\Controler\\'.ucfirst($explose[2]).'Controler';
+    }
+}
+
+
+        $className = 'App\Controler\\'.ucfirst($this->controller).'Controler';
 
         if (class_exists($className)){
             $this->controller = new $className();

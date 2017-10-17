@@ -70,9 +70,9 @@ class BilletDAO extends Model implements DAO
 //methods
     public function create ()
     {
-        $titre = htmlspecialchars($_POST['titre']);
-        $contenu = htmlspecialchars($_POST['contenu']);
-        $auteur = htmlspecialchars($_POST['auteur']);
+//        $titre = htmlspecialchars($_POST['titre']);
+//        $contenu = htmlspecialchars($_POST['contenu']);
+//        $auteur = htmlspecialchars($_POST['auteur']);
 
 
         $req = $this->getPDO()->prepare('INSERT INTO billet (titre, contenu, auteur ) VALUES (?, ?, ?)');
@@ -84,7 +84,7 @@ class BilletDAO extends Model implements DAO
     {
         $req = $this->getPDO()->prepare('SELECT * FROM billet WHERE id_billet = ?');
        $req->execute(array($id_post));
-       $donneeBilletRead = $req->fetch();
+      return $req->fetch();
     }
 
 //    public function readAll ()
