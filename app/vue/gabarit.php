@@ -12,8 +12,8 @@
 <header>
 
 </header>
-<section class="container">
- <?php $contenu ?>
+<section class="container" style="color: red;">
+<?php echo $contenu?>
 </section>
  <footer>
 
