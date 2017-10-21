@@ -87,11 +87,11 @@ class BilletDAO extends Model implements DAO
       return $req->fetch();
     }
 
-//    public function readAll ()
-//    {
-//        $req = $this->getPDO()->query('SELECT * FROM billet');
-//        $donneeBilletReadAll = $req->fetch();
-//    }
+    public function readAll ()
+    {
+        return $this->getPDO()->query('SELECT * FROM billet');
+//        return $req->fetch();
+    }
 
     public function update ()
     {

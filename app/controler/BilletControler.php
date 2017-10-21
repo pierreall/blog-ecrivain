@@ -21,6 +21,15 @@ class BilletControler
 
     }
 
+    /**
+     *  méthode appelé par défaut , affichage l'ensemble des billets (page principale)
+     */
+    public function affichageAll(){
+        $donneeBilletAll = $this->billet->readAll();
+        ob_start();
+        require 'app/vue/BilletAffichageAllVue.php';afff
+    }
+
     public function affichage($id_post){
         if(isset($id_post)) {
 
@@ -34,7 +43,7 @@ class BilletControler
 
 
 
-//            ob_end_flush();
+            ob_end_flush();
 //            $contenu = ob_get_contents();
 
         }

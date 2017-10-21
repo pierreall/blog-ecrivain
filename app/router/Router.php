@@ -33,19 +33,19 @@ class Router
 
         if($explose[2] == null || $explose[2] == ''){
             $this->controller = 'billet';
-            $this->method = 'affichage';
-            $this->param = 0;
+            $this->method = 'affichageAll';
+            $this->param = '';
         }
         else{
             $this->controller = $explose[2];
             if($explose[3] == null || $explose[3] == ''){
-                $this->method = 'affichage';
-                $this->param = 0;
+                $this->method = 'affichageAll';
+                $this->param = '';
             }
             else {
                 $this->method = $explose[3];
                 if($explose[4] == null || $explose[4] == ''){
-                    $this->param = 0;
+                    $this->param = '';
                 }
                 else {
                     $this->param = $explose[4];

@@ -15,19 +15,24 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-2">
             <auteur>
-                <?php echo 'auteur : '.$donneeBilletRead['auteur']; ?>
+                <?php echo 'Posté par : '.$donneeBilletRead['auteur']; ?>
             </auteur>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-2">
             <date>
-                <?php echo  $donneeBilletRead['date']; ?>
+                <?php echo  'le '.$donneeBilletRead['date']; ?>
             </date>
         </div>
     </div>
+<!--    <div class="row">-->
+<!--        <div class="col-lg-12">-->
+<!--            <date>-->
+<!--                --><?php //echo  'le '.$donneeBilletRead['date']; ?>
+<!--            </date>-->
+<!--        </div>-->
+<!--    </div>-->
 <!--</section>-->
 <?php $contenu = ob_get_contents();?>
 <?php //var_dump($contenu);?>
