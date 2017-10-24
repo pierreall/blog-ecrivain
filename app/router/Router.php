@@ -31,7 +31,7 @@ class Router
         $explose[1] == '';
 
 
-        if($explose[2] == null || $explose[2] == ''){
+        if(!isset($explose[2])|| $explose[2] == ''){
             $this->controller = 'billet';
             $this->method = 'affichageAll';
             $this->param = '';
@@ -45,7 +45,7 @@ class Router
             else {
                 $this->method = $explose[3];
 
-                if(!array_key_exists('4', $explose) || $explose[4] == ''){
+                if(!isset($explose[4]) || $explose[4] == ''){
                     $this->param = '';
                 }
                 else {
