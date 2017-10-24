@@ -4,21 +4,25 @@ namespace App\Controler;
 
 
 class ErreurControler {
+    public static $method = true;
+    public static $control = true;
+
     public function __construct ()
     {
-        echo 'oups rien trouvé !';
-//        require '../vue/Erreur.php';
-
         ob_start();
         include 'app/vue/Erreur.php';
-        ob_end_clean();
-
-
-
     }
 
+//    static public function controlerNoExist(){
+//     ob_start();
+//        include "app/vue/Erreur.php";
+//
+//    }
+
    static public function methodNoExist(){
-        echo 'la méthode n\'existe pas';
+       self::$method = false;
+       ob_start();
+       include 'app/vue/Erreur.php';
     }
 
 }

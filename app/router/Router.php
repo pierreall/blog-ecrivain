@@ -38,13 +38,14 @@ class Router
         }
         else{
             $this->controller = $explose[2];
-            if($explose[3] == null || $explose[3] == ''){
+            if(!isset($explose[3])|| $explose[3] == ''){
                 $this->method = 'affichageAll';
                 $this->param = '';
             }
             else {
                 $this->method = $explose[3];
-                if($explose[4] == null || $explose[4] == ''){
+
+                if(!array_key_exists('4', $explose) || $explose[4] == ''){
                     $this->param = '';
                 }
                 else {
@@ -59,9 +60,6 @@ class Router
 
         if (class_exists($className)){
             $this->controller = new $className();
-//            $this->controller->{$this->method .'()'};
-//            call_user_func($this->method, 1);
-//            $this->controller->affichage(1);
 
             $method = $this->method;
             if(method_exists($this->controller, $method)){

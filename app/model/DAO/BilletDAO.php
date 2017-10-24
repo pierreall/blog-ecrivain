@@ -89,8 +89,8 @@ class BilletDAO extends Model implements DAO
 
     public function readAll ()
     {
-        return $this->getPDO()->query('SELECT * FROM billet');
-//        return $req->fetch();
+       $req = $this->getPDO()->query('SELECT * FROM billet');
+        return $req->fetchAll(\PDO::FETCH_OBJ);
     }
 
     public function update ()

@@ -9,8 +9,17 @@
     <title><?php echo $title ?></title>
 </head>
 <body>
-<header>
+<header class="">
+    <nav class="navbar navbar-default">
 
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#">Accueil</a></li>
+                <li><a href="#">Dernier Billet</a></li>
+                <li><a href="#">Connection</a></li>
+            </ul>
+
+    </nav>
+<h1><?php echo $title; ?></h1>
 </header>
 <section class="container" style="color: red;">
 <?php echo $contenu?>

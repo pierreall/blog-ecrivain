@@ -1,30 +1,30 @@
-<?php while ($donneeBilletReadAll = $donneeBilletAll->fetchAll()){?>
+<?php foreach ($donneeBilletAll as $billet) {
+
+?>
 <div class="row">
     <div class="col-lg-12">
         <h2 class="titre">
-            <?php echo $donneeBilletReadAll['titre'] ; ?>
+            <?php echo $billet->titre ; ?>
 </h2>
 </div>
 </div>
 <div class="row">
     <div class="col-lg-12">
         <p class="contenu">
-            <?php echo $donneeBilletReadAll['contenu']; ?>
+            <?php echo $billet->contenu; ?>
         </p>
     </div>
 </div>
 <div class="row">
     <div class="col-lg-12">
-        <auteur>
-            <?php echo 'auteur : '.$donneeBilletReadAll['auteur']; ?>
-        </auteur>
+
+            <?php echo 'auteur : '.$billet->auteur; ?>
     </div>
 </div>
 <div class="row">
     <div class="col-lg-12">
-        <date>
-            <?php echo  $donneeBilletReadAll['date']; ?>
-        </date>
+
+            <?php echo  $billet->date; ?>
     </div>
 </div>
 <?php }?>
