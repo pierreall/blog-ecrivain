@@ -26,7 +26,7 @@ class BilletControler
      */
     public function affichageAll(){
         $donneeBilletAll = $this->billet->readAll();
-        var_dump($donneeBilletAll);
+//        var_dump($donneeBilletAll);
         ob_start();
         require 'app/vue/BilletAffichageAllVue.php';
         ob_end_flush();

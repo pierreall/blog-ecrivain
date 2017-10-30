@@ -1,13 +1,23 @@
 <?php
+namespace App\Controler;
 
-namespace App\Model\DAO;
-
-use App\Model\Model;
-
-class BilletDAO extends Model implements DAO
+class BilletManager extends DAO
 {
-
-//methods
+    private getPDO();
+    
+    
+    
+    
+    public function __construct($this->getPDO()){
+        $this->setPDo(getPDO());
+    }
+    
+    
+   public function setPDO($PDO){
+       $this->getPDO() = $PDO;
+   }
+    
+ 
     public function create ()
     {
 //        $titre = htmlspecialchars($_POST['titre']);
@@ -30,13 +40,7 @@ class BilletDAO extends Model implements DAO
     public function readAll ()
     {
        $req = $this->getPDO()->query('SELECT * FROM billet');
-       $array = $req->fetchAll();/*\PDO::FETCH_OBJ*/
-       $billets = array();
-       foreach ($array as $objet){
-           $billet = new Billet($objet);
-           $billets []= $billet;
-       }
-        return $billets;
+        return $req->fetchAll(\PDO::FETCH_OBJ);
     }
 
     public function update ()
@@ -53,4 +57,3 @@ class BilletDAO extends Model implements DAO
     }
 
 }
-
