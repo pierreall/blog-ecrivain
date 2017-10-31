@@ -10,7 +10,7 @@ class BilletControler
     protected $billet;
     public function __construct ()
     {
-        echo __CLASS__. ' construit <br>';
+//        echo __CLASS__. ' construit <br>';
         $this->billet = new BilletDAO();
     }
 

@@ -17,12 +17,12 @@ class Router
     {
 
         $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-        var_dump($url);
+//        var_dump($url);
 
 
 
         $explose = explode('/', $url);
-        var_dump($explose);
+//        var_dump($explose);
         // $this->controller = $explose[1];
         str_replace('$explose[0]', '','$explose');
         str_replace('$explose[1]','','$explose');
