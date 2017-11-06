@@ -4,7 +4,7 @@ namespace App\Model\DAO;
 
 use App\Model\Model;
 
-class CommentaireDAO extends Model implements DAO
+class CommentaireDAO extends Model
 {
 
     private $_id;

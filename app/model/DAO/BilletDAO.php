@@ -4,7 +4,7 @@ namespace App\Model\DAO;
 
 use App\Model\Model;
 
-class BilletDAO extends Model implements DAO
+class BilletDAO extends Model
 {
 
 //methods

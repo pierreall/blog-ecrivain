@@ -4,7 +4,7 @@ namespace App\Model\DAO;
 
 use App\Model\Model;
 
-class UtilisateurDAO extends Model implements DAO
+class UtilisateurDAO extends Model
 {
     protected $utilisateur;
 
