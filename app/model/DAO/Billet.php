@@ -9,8 +9,8 @@ class Billet {
 
     public function __construct ($objet)
     {
-        var_dump($objet);
         $this->hydrate($objet);
+//        echo 'test : '.$this->getTitre();
     }
 
     public function hydrate(array $donnees){

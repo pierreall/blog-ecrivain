@@ -1,50 +1,8 @@
-<!--<section class="container well">-->
-<?php //ob_start();?>
-<!--    <div class="row">-->
-<!--        <div class="col-lg-12">-->
-<!--            <h2 class="titre">-->
-<!--                --><?php //echo $donneeBilletRead['titre'] ; d
-
-?>
-
-<!--            </h2>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--    <div class="row">-->
-<!--        <div class="col-lg-12">-->
-<!--            <p class="contenu">-->
-<!--                --><?php //echo $donneeBilletRead['contenu']; ?>
-<!--            </p>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--    <div class="row">-->
-<!--        <div class="col-lg-2">-->
-<!--            <auteur>-->
-<!--                --><?php //echo 'Posté par : '.$donneeBilletRead['auteur']; ?>
-<!--            </auteur>-->
-<!--        </div>-->
-<!--        <div class="col-lg-2">-->
-<!--            <date>-->
-<!--                --><?php //echo  'le '.$donneeBilletRead['date']; ?>
-<!--            </date>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--    <div class="row">-->
-<!--        <div class="col-lg-12">-->
-<!--            <date>-->
-<!--                --><?php //echo  'le '.$donneeBilletRead['date']; ?>
-<!--            </date>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</section>-->
-<?php $contenu = ob_get_contents();?>
-<?php //var_dump($contenu);?>
-
 <?php
-$contenu = $donneeBilletRead['contenu'];
-$title = $donneeBilletRead['titre'] ;
-$date = $donneeBilletRead['date'];
-$auteur = $donneeBilletRead['auteur'];
+$contenu = $donneeBilletRead[0]->getContenu();
+$title = $donneeBilletRead[0]->getTitre() ;
+$date = $donneeBilletRead[0]->getDate();
+$auteur = $donneeBilletRead[0]->getAuteur();
 ?>
 <?php include 'app/vue/post.html'; ?>
 

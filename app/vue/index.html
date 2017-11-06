@@ -11,15 +11,15 @@
     <title><?php echo $title; ?></title>
 
     <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/app/vue/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom fonts for this template -->
-    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="/app/vue/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 
     <!-- Custom styles for this template -->
-    <link href="css/clean-blog.min.css" rel="stylesheet">
+    <link href="/app/vue/css/clean-blog.min.css" rel="stylesheet">
 
   </head>
 
@@ -56,7 +56,7 @@
           <div class="col-lg-8 col-md-10 mx-auto">
             <div class="site-heading">
               <h1><?php echo $title ;?></h1>
-              <span class="subheading">A Blog Theme by Start Bootstrap</span>
+              <span class="subheading">Mon blog</span>
             </div>
           </div>
         </div>
@@ -64,13 +64,13 @@
     </header>
 
     <!-- Main Content -->
-    <div class="container">
+<!--    <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
           <div class="post-preview">
             <a href="post.html">
               <h2 class="post-title">
-               <!-- Man must explore, and this is exploration at its greatest-->
+               &lt;!&ndash; Man must explore, and this is exploration at its greatest&ndash;&gt;
 				<?php echo $donnee['post-title']; ?>
               </h2>
               <h3 class="post-subtitle">
@@ -120,14 +120,41 @@
               <a href="#">Start Bootstrap</a>
               on July 8, 2017</p>
           </div>
-          <hr>
-          <!-- Pager -->
-          <div class="clearfix">
-            <a class="btn btn-secondary float-right" href="#">Older Posts &rarr;</a>
+          <hr>-->
+    <?php /*echo $contenu*/ ?>
+    <?php foreach ($donneeBilletAll as $billet) {?>
+    <!-- Main Content -->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-preview">
+            <a href="post.html">
+              <h2 class="post-title">
+                <!-- Man must explore, and this is exploration at its greatest-->
+                <?php echo $billet->getTitre(); ?>
+              </h2>
+              <!--                    <h3 class="post-subtitle">-->
+              <!--                        Problems look mighty small from 150 miles up-->
+              <!--                    </h3>-->
+            </a>
+            <p class="post-meta">Posté par
+              <a href="#"><?php echo $billet->getAuteur();?></a>
+              le <?php echo $billet->getDate();?></p>
           </div>
         </div>
       </div>
     </div>
+    <hr>
+    <?php } ?>
+          <!-- Pager -->
+          <div class="clearfix">
+            <a class="btn btn-secondary float-right" href="#">Dernier Billets &rarr;</a>
+          </div>
+<!--
+        </div>
+      </div>
+    </div>
+-->
 
     <hr>
 
@@ -162,19 +189,19 @@
                 </a>
               </li>
             </ul>
-            <p class="copyright text-muted">Copyright &copy; Your Website 2017</p>
+            <p class="copyright text-muted">Copyright &copy; Mon Blog 2017</p>
           </div>
         </div>
       </div>
     </footer>
 
     <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/popper/popper.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/app/vue/vendor/jquery/jquery.min.js"></script>
+    <script src="/app/vue/vendor/popper/popper.min.js"></script>
+    <script src="/app/vue/vendor/bootstrap/js/bootstrap.min.js"></script>
 
     <!-- Custom scripts for this template -->
-    <script src="js/clean-blog.min.js"></script>
+    <script src="/app/vue/js/clean-blog.min.js"></script>
 
   </body>
 

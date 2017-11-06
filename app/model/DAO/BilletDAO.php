@@ -24,7 +24,17 @@ class BilletDAO extends Model implements DAO
     {
         $req = $this->getPDO()->prepare('SELECT * FROM billet WHERE id_billet = ?');
        $req->execute(array($id_post));
-      return $req->fetch();
+//      return $req->fetch();
+        $array = $req->fetchAll();
+//        die(var_dump($array));
+        $billets = array();
+        foreach ($array as $objet){
+            $billet = new Billet($objet);
+//            var_dump($billet);
+//            die('salut');
+            $billets[] = $billet;
+        }
+        return $billets;
     }
 
     public function readAll ()
