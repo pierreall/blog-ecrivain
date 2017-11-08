@@ -5,14 +5,14 @@ class Factory
 {
 
     public static function newBillet(){
-        return new BilletDAO();
+        return new PostDAO();
     }
 
     public static function newCommentaire(){
-        return new CommentaireDAO();
+        return new CommentDAO();
     }
 
     public static function newUtilisateur(){
-        return new UtilisateurDAO();
+        return new UserDAO();
     }
 }

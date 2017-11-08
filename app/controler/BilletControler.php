@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Controler;
-use App\Model\DAO\BilletDAO;
+use App\Model\DAO\PostDAO;
 
 
 class BilletControler
@@ -11,7 +11,7 @@ class BilletControler
     public function __construct ()
     {
 //        echo __CLASS__. ' construit <br>';
-        $this->billet = new BilletDAO();
+        $this->billet = new PostDAO();
     }
 
     public function ajout(){
@@ -22,13 +22,13 @@ class BilletControler
     }
 
     /**
-     *  méthode appelé par défaut , affichage l'ensemble des billets (page principale)
+     *  default method, display all tickets (homepage)
      */
     public function affichageAll(){
         $donneeBilletAll = $this->billet->readAll();
 //        var_dump($donneeBilletAll);
         ob_start();
-        require 'app/vue/BilletAffichageAllVue.php';
+        require 'app/view/BilletAffichageAllVue.php';
         ob_end_flush();
     }
 
@@ -39,7 +39,7 @@ class BilletControler
 
 
             ob_start();
-            require 'app/vue/BilletAffichageVue.php';
+            require 'app/view/BilletAffichageVue.php';
 //            $contenu = ob_get_flush();
 
 

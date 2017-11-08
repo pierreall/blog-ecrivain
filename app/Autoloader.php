@@ -21,7 +21,7 @@ class Autoloader {
     }
 
     static function autoloadVue($class_name){
-        require 'vue/'.$class_name.'php';
+        require 'view/'.$class_name.'php';
     }*/
 
 

@@ -10,19 +10,19 @@ class ErreurControler {
     public function __construct ()
     {
         ob_start();
-        include 'app/vue/Erreur.php';
+        include 'app/view/Erreur.php';
     }
 
 //    static public function controlerNoExist(){
 //     ob_start();
-//        include "app/vue/Erreur.php";
+//        include "app/view/Erreur.php";
 //
 //    }
 
    static public function methodNoExist(){
        self::$method = false;
        ob_start();
-       include 'app/vue/Erreur.php';
+       include 'app/view/Erreur.php';
     }
 
 }

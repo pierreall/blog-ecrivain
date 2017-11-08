@@ -2,7 +2,7 @@
 
 namespace App\Controler;
 
-use App\Model\DAO\UtilisateurDAO;
+use App\Model\DAO\UserDAO;
 
 class UtilisateurControler {
 
@@ -10,7 +10,7 @@ class UtilisateurControler {
     public function __construct ()
     {
         echo __CLASS__.'construit';
-        $this->utilisateur = new UtilisateurDAO();
+        $this->utilisateur = new UserDAO();
     }
 
     public function ajout(){
