@@ -7,4 +7,4 @@
 
 <?php $contenu = ob_get_contents();?>
 <?php $title = 'Erreur 404' ?>
-<?php include_once 'app/view/gabarit.php'; ?>
+<?php include 'app/view/gabarit.php'; ?>

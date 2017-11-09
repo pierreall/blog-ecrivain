@@ -24,6 +24,7 @@ class PostDAO extends Model
     {
         $req = $this->getPDO()->prepare('SELECT * FROM billet WHERE id_billet = ?');
        $req->execute(array($id_post));
+//       var_dump($req);
 //      return $req->fetch();
         $array = $req->fetchAll();
 //        die(var_dump($array));

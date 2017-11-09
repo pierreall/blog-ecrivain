@@ -33,21 +33,22 @@ class BilletControler
     }
 
     public function affichage($id_post){
-        if(isset($id_post)) {
-
-            $donneeBilletRead = $this->billet->read($id_post);
-
-
+        if(isset($id_post) && is_numeric($id_post)) {
+            if ($this->billet->read($id_post)){
+                $donneeBilletRead = $this->billet->read($id_post);
+                ob_start();
+                require 'app/view/BilletAffichageVue.php';
+                ob_end_flush();
+            }
+            else {
+                ErreurControler::methodNoExist();
+            }
+        }
+        else {
+            $donneeBilletRead = $this->billet->read(1);
             ob_start();
             require 'app/view/BilletAffichageVue.php';
-//            $contenu = ob_get_flush();
-
-
-
-
             ob_end_flush();
-//            $contenu = ob_get_contents();
-
         }
     }
 
