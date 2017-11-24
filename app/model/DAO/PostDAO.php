@@ -10,8 +10,8 @@ class PostDAO extends Model
 //methods
     public function create ()
     {
-//        $titre = htmlspecialchars($_POST['titre']);
-//        $contenu = htmlspecialchars($_POST['contenu']);
+        $titre = htmlspecialchars($_POST['title']);
+        $contenu = htmlspecialchars($_POST['content_post']);
 //        $auteur = htmlspecialchars($_POST['auteur']);
 
 

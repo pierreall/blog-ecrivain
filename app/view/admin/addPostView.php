@@ -5,5 +5,5 @@
     <textarea name="content_post" id="" cols="30" rows="10">
 
     </textarea>
-    <input type="submit" valider="Poster Billet">
+    <input type="submit" value="Poster Billet">
 </form>

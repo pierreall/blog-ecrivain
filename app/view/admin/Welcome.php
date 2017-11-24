@@ -1,5 +1,5 @@
 <?php
-
+/*
 // bienvenue.php
 session_start();
 if(isset($_SESSION['pseudo'])) {
@@ -8,7 +8,7 @@ if(isset($_SESSION['pseudo'])) {
 else {
     header('Location: /app/admin/login');
 }
-?>
+*/?>
 
 <a href="/app/billet/ajout"><button>Ajouter un Billet</button></a>
 <a href="/app/billet/miseAJour"><button>Modifier un Billet</button></a>

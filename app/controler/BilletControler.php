@@ -4,7 +4,7 @@ namespace App\Controler;
 use App\Model\DAO\PostDAO;
 
 
-class BilletControler
+class BilletControler extends Controler
 {
 
     protected $billet;
@@ -13,12 +13,15 @@ class BilletControler
 //        echo __CLASS__. ' construit <br>';
         $this->billet = new PostDAO();
     }
-
+    public function index(){
+        $this->affichageAll();
+    }
     public function ajout(){
-        echo 'appel de la méthode '. __METHOD__;
-        $this->billet->create();
-
-
+//        echo 'appel de la méthode '. __METHOD__;
+        require 'app/view/admin/add_post.php';
+        if(isset($_POST['title']) && isset($_POST['content_post'])){
+            $this->billet->create();
+        }
     }
 
     /**
@@ -27,6 +30,7 @@ class BilletControler
     public function affichageAll(){
         $donneeBilletAll = $this->billet->readAll();
 //        var_dump($donneeBilletAll);
+//        $this->viewTemplate('app/view/BilletAffichageAllVue.php','app/view/admin/Template.php', 'Bienvenue');
         ob_start();
         require 'app/view/BilletAffichageAllVue.php';
         ob_end_flush();

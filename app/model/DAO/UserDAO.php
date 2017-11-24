@@ -33,6 +33,15 @@ class UserDAO extends Model
                 $this->setEmail($donnees['email']);
             }
         }*/
+    public function verif(){
+        $pseudo = htmlspecialchars($_POST['pseudo']);
+        $mdp = htmlspecialchars($_POST['password']);
+
+        $req = $this->getPDO()->prepare('SELECT pseudo, password FROM user WHERE pseudo = :pseudo');
+        $req->execute(array('pseudo' => $pseudo));
+        return $row = $req->fetchAll();
+    }
+
 
     public function create ()
     {

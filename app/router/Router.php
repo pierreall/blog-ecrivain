@@ -39,7 +39,7 @@ class Router
         else{
             $this->controller = $explose[2];
             if(!isset($explose[3])|| $explose[3] == ''){
-                $this->method = 'affichageAll';
+                $this->method = 'index';//methode par défaut pour tous les controlers
                 $this->param = '';
             }
             else {

@@ -1,11 +1,14 @@
 <?php
-
+namespace App\Controler;
 class Controler {
 
 
-
+//    public function index(){
+//        $this->affichageAll();
+//    }
 
     /**
+     * ajout de la vue dans le template
      * @param $url_view string
      * @param $url_template string
      * @param $title string
@@ -18,4 +21,18 @@ class Controler {
         $title = $title;
         require $url_template;
     }
+
+    public function ajout(){
+
+    }
+    public function affichage(){
+
+    }
+    public function miseAJour(){
+
+    }
+    public function supprimer(){
+
+    }
+
 }

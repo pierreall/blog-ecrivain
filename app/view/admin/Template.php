@@ -36,13 +36,13 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="index.html">Accueil</a>
+                    <a class="nav-link" href="/app/">Accueil</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="about.html">Dernier Billet</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="post.html">Connection</a>
+                    <a class="nav-link" href="/app/admin/">Connection</a>
                 </li>
             </ul>
         </div>
