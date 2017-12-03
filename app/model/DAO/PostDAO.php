@@ -12,11 +12,16 @@ class PostDAO extends Model
     {
         $titre = htmlspecialchars($_POST['title']);
         $contenu = htmlspecialchars($_POST['content_post']);
+        date_default_timezone_set('Europe/Paris');
+        $date = date('Y-m-d H:i:s');
+        $auteur = $_SESSION['pseudo'];
+        var_dump($auteur);
+
 //        $auteur = htmlspecialchars($_POST['auteur']);
 
 
-        $req = $this->getPDO()->prepare('INSERT INTO billet (titre, contenu, auteur ) VALUES (?, ?, ?)');
-        return $req->execute(array($titre, $contenu,$auteur));
+        $req = $this->getPDO()->prepare('INSERT INTO billet (titre, contenu, date, auteur) VALUES (?, ?, ?, ?)');
+        return $req->execute(array($titre, $contenu, $date, $auteur));
 
     }
 

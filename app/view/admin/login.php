@@ -1,4 +1,4 @@
-<form name="sentMessage" id="contactForm" action="http://blog-ecrivain/app/" method="post">
+<form name="sentMessage" id="contactForm" action="http://blog-ecrivain/app/admin/verif" method="post">
     <div class="control-group">
         <div class="form-group floating-label-form-group controls">
             <label for="pseudo">identifiant/pseudo</label>

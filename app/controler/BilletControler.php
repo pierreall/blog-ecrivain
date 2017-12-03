@@ -8,6 +8,7 @@ class BilletControler extends Controler
 {
 
     protected $billet;
+
     public function __construct ()
     {
 //        echo __CLASS__. ' construit <br>';
@@ -17,8 +18,7 @@ class BilletControler extends Controler
         $this->affichageAll();
     }
     public function ajout(){
-//        echo 'appel de la méthode '. __METHOD__;
-        require 'app/view/admin/add_post.php';
+        $this->viewTemplate('app/view/admin/addPostView.php','app/view/admin/Template.php', 'Ajout d\'un nouveau Billet');
         if(isset($_POST['title']) && isset($_POST['content_post'])){
             $this->billet->create();
         }
@@ -29,20 +29,19 @@ class BilletControler extends Controler
      */
     public function affichageAll(){
         $donneeBilletAll = $this->billet->readAll();
-//        var_dump($donneeBilletAll);
-//        $this->viewTemplate('app/view/BilletAffichageAllVue.php','app/view/admin/Template.php', 'Bienvenue');
-        ob_start();
-        require 'app/view/BilletAffichageAllVue.php';
-        ob_end_flush();
+        $var_array = array("donneeBillet" => $donneeBilletAll);
+        $this->viewTemplate('app/view/BilletAffichageAllVue.php','app/view/index.html', 'Bienvenue', $var_array);
     }
 
     public function affichage($id_post){
         if(isset($id_post) && is_numeric($id_post)) {
             if ($this->billet->read($id_post)){
                 $donneeBilletRead = $this->billet->read($id_post);
-                ob_start();
-                require 'app/view/BilletAffichageVue.php';
-                ob_end_flush();
+                $var_array = array("titreBillet" => $donneeBilletRead[0]->getTitre(),
+                    "auteurBillet" => $donneeBilletRead[0]->getAuteur(),
+                    "dateBillet" => $donneeBilletRead[0]->getDate(),
+                    "contenuBillet" => $donneeBilletRead[0]->getContenu());
+                $this->viewTemplate('app/view/BilletAffichageVue.php', 'app/view/post.html', $var_array, $var_array);
             }
             else {
                 ErreurControler::methodNoExist();
@@ -50,17 +49,21 @@ class BilletControler extends Controler
         }
         else {
             $donneeBilletRead = $this->billet->read(1);
-            ob_start();
-            require 'app/view/BilletAffichageVue.php';
-            ob_end_flush();
+            $var_array = array("titreBillet" => $donneeBilletRead[0]->getTitre(),
+                "auteurBillet" => $donneeBilletRead[0]->getAuteur(),
+                "dateBillet" => $donneeBilletRead[0]->getDate(),
+                "contenuBillet" => $donneeBilletRead[0]->getContenu());
+            $this->viewTemplate('app/view/BilletAffichageVue.php', 'app/view/post.html', $var_array, $var_array);
         }
     }
 
-    public function miseAJour(){
+    public function miseAJour($id_post){
+        $this->viewTemplate('app/view/admin/updatePostView.php','app/view/admin/Template.php', 'Mise à jour de ');
         $this->billet->update();
     }
 
     public function effacement(){
+        $this->viewTemplate('app/view/admin/deletePostView.php', 'app/view/admin/Template.php', 'suppression de');
         $this->billet->delete();
     }
 

@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+    <script>tinymce.init({ selector: '#content' });</script>
 
     <title><?= $title ?></title>
 
@@ -156,8 +158,8 @@
 <script src="/app/view/vendor/bootstrap/js/bootstrap.min.js"></script>
 
 <!-- Contact Form JavaScript -->
-<script src="/app/view/js/jqBootstrapValidation.js"></script>
-<script src="/app/view/js/contact_me.js"></script>
+<!--<script src="/app/view/js/jqBootstrapValidation.js"></script>-->
+<!--<script src="/app/view/js/contact_me.js"></script>-->
 
 <!-- Custom scripts for this template -->
 <script src="/app/view/js/clean-blog.min.js"></script>

@@ -45,7 +45,7 @@ class AdminControler extends Controler
         session_start();
 
         if(isset($_POST['pseudo']) && isset($_POST['password'])){
-
+            var_dump($_POST['pseudo']);
             $pseudo = htmlspecialchars($_POST['pseudo']);
             $mdp = htmlspecialchars($_POST['password']);
 
@@ -58,6 +58,7 @@ class AdminControler extends Controler
 
                 if ($isOk) {
                     $_SESSION['pseudo'] = $row[0]['pseudo'];
+                    var_dump($_SESSION['pseudo']);
                     header('Location: /app/admin/home');
                 } else {
                     echo "verifiez vos données";

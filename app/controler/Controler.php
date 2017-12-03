@@ -7,14 +7,12 @@ class Controler {
 //        $this->affichageAll();
 //    }
 
-    /**
-     * ajout de la vue dans le template
-     * @param $url_view string
-     * @param $url_template string
-     * @param $title string
-     */
-    public function viewTemplate( $url_view, $url_template, $title){
-        ob_start();
+     public function viewTemplate( $url_view, $url_template, $title, $array = null){
+        if(isset($array)){
+            extract($array);
+            var_dump($array);
+        }
+         ob_start();
         require $url_view;
         $contenu = ob_get_contents();
         ob_end_clean();
@@ -25,10 +23,10 @@ class Controler {
     public function ajout(){
 
     }
-    public function affichage(){
+    public function affichage($id_post){
 
     }
-    public function miseAJour(){
+    public function miseAJour($id_post){
 
     }
     public function supprimer(){
