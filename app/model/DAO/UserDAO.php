@@ -39,7 +39,8 @@ class UserDAO extends Model
 
         $req = $this->getPDO()->prepare('SELECT pseudo, password FROM user WHERE pseudo = :pseudo');
         $req->execute(array('pseudo' => $pseudo));
-        return $row = $req->fetchAll();
+
+       return $row = $req->fetchAll();
     }
 
 

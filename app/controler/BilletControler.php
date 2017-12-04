@@ -19,8 +19,10 @@ class BilletControler extends Controler
     }
     public function ajout(){
         $this->viewTemplate('app/view/admin/addPostView.php','app/view/admin/Template.php', 'Ajout d\'un nouveau Billet');
+       var_dump($_POST);
         if(isset($_POST['title']) && isset($_POST['content_post'])){
             $this->billet->create();
+            var_dump('test create');
         }
     }
 
@@ -37,10 +39,11 @@ class BilletControler extends Controler
         if(isset($id_post) && is_numeric($id_post)) {
             if ($this->billet->read($id_post)){
                 $donneeBilletRead = $this->billet->read($id_post);
+                var_dump($donneeBilletRead[0]->getContenu());
                 $var_array = array("titreBillet" => $donneeBilletRead[0]->getTitre(),
                     "auteurBillet" => $donneeBilletRead[0]->getAuteur(),
                     "dateBillet" => $donneeBilletRead[0]->getDate(),
-                    "contenuBillet" => $donneeBilletRead[0]->getContenu());
+                    "contenuBillet" => htmlentities($donneeBilletRead[0]->getContenu()));
                 $this->viewTemplate('app/view/BilletAffichageVue.php', 'app/view/post.html', $var_array, $var_array);
             }
             else {

@@ -50,10 +50,12 @@ class AdminControler extends Controler
             $mdp = htmlspecialchars($_POST['password']);
 
             $user = new UserDAO();
-            $user->verif();
+            $row = $user->verif();
 
+            var_dump($row);
 
             if (!empty($row)) {
+
                 $isOk = password_verify($mdp, $row[0]['password']);
 
                 if ($isOk) {

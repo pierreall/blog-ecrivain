@@ -10,18 +10,21 @@ class PostDAO extends Model
 //methods
     public function create ()
     {
-        $titre = htmlspecialchars($_POST['title']);
-        $contenu = htmlspecialchars($_POST['content_post']);
+//        $titre = htmlspecialchars($_POST['title']);
+//        $contenu = htmlspecialchars($_POST['content_post']);
+        $titre = $_POST['title'];
+        $contenu = $_POST['content_post'];
         date_default_timezone_set('Europe/Paris');
         $date = date('Y-m-d H:i:s');
-        $auteur = $_SESSION['pseudo'];
+//        $auteur = $_SESSION['pseudo'];
+        $auteur = 'Pierre';
         var_dump($auteur);
 
 //        $auteur = htmlspecialchars($_POST['auteur']);
 
 
-        $req = $this->getPDO()->prepare('INSERT INTO billet (titre, contenu, date, auteur) VALUES (?, ?, ?, ?)');
-        return $req->execute(array($titre, $contenu, $date, $auteur));
+        $req = $this->getPDO()->prepare('INSERT INTO billet (date, titre, contenu, auteur) VALUES (?, ?, ?, ?)');
+        return $req->execute(array($date, $titre, $contenu, $auteur));
 
     }
 
