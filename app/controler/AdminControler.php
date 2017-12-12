@@ -2,6 +2,7 @@
 namespace App\Controler;
 
 
+use App\Model\DAO\PostDAO;
 use App\Model\DAO\UserDAO;
 
 
@@ -24,13 +25,23 @@ class AdminControler extends Controler
     }
     public function login()
     {
-        $this->viewTemplate('app/view/admin/login.php', 'app/view/admin/Template.php', 'Connection administration');
+        session_start();
+        if (!isset($_SESSION['pseudo'])){
+            $this->viewTemplate('app/view/admin/login.php', 'app/view/admin/Template.php', 'Connection administration');
+        }
+        else {
+            header('Location: /app/admin/home');
+        }
+    }
+    public function logout(){
+        session_abort();
     }
 
 
 
     public function home(){
         session_start();
+        var_dump($_SESSION);
         if(isset($_SESSION['pseudo'])) {
             $this->viewTemplate('app/view/admin/Welcome.php', 'app/view/admin/Template.php', 'Accueil Administration');
         }
@@ -78,6 +89,108 @@ class AdminControler extends Controler
         }
 
     }
+    public function ajout(){
+        session_start();
+        var_dump($_SESSION);
+        if (isset($_SESSION['pseudo'])){
+            $this->viewTemplate('app/view/admin/addPostView.php','app/view/admin/Template.php', 'Ajout d\'un nouveau Billet');
+            var_dump($_POST);
+            if(isset($_POST['title']) && isset($_POST['content_post'])){
+                $billet = new PostDAO();
+                $billet->create();
+                var_dump('test create');
+            }
+        }
+        else {
+            header('Location: /app/admin/login');
+        }
+    }
+//    public function miseAJour($id_post){
+//        session_start();
+//        if(isset($_SESSION['pseudo'])){
+//            $this->viewTemplate('app/view/admin/updatePostView.php','app/view/admin/Template.php', 'Mise à jour du billet'.$id_post);
+////            var_dump('test'); die();
+//            if(isset($_POST['title']) && isset($_POST['content_post'])){
+//                $billet = new PostDAO();
+//                $billet->update();
+//            }
+//        }
+//        else {
+//            header('Location: /app/admin/login');
+//        }
+//
+//    }
+    public function miseAJour($id_post)
+    {
+        session_start();
+        if (isset($_SESSION['pseudo'])){
+            if (isset($id_post) && is_numeric($id_post)) {
+                $billet = new PostDAO();
+                if ($billet->read($id_post)) {
+                    $donneeBilletRead = $billet->read($id_post);
+                    $var_array = array("title" => $donneeBilletRead[0]->getTitre(),
+                        "contenuBillet" => $donneeBilletRead[0]->getContenu(),
+                        "idBillet" => $id_post);
+                    $this->viewTemplate('app/view/admin/updatePostView.php', 'app/view/admin/Template.php', $var_array, $var_array);
+                    if(isset($_POST['title']) && isset($_POST['content_post'])){
+                        $billet->update($id_post);
+                    }
+                } else {
+                    ErreurControler::methodNoExist();
+                }
+            }
+        }
+        else {
+            header('Location: /app/admin/login');
+        }
 
+    }
+
+//    public function miseAJour($id_post)
+//    {var_dump('1er');
+//        if (isset($id_post) && is_numeric($id_post)) {
+//            var_dump('2em');
+//            $billet = new PostDAO();
+//            var_dump($billet);
+//            var_dump('3em');
+//            $donneeBilletRead = $billet->update();
+//            var_dump($donneeBilletRead);
+//            $var_array = array("titreBillet" => $donneeBilletRead[0]->getTitre(),
+//                "contenuBillet" => $donneeBilletRead[0]->getContenu(),
+//                "idBillet" => $donneeBilletRead[0]->getId());
+//            $this->viewTemplate('app/view/admin/updatePostView.php', 'app/view/admin/Template.php', $var_array, $var_array);
+//            $billet->update();
+//        } else {
+//            ErreurControler::methodNoExist();
+//        }
+//    }
+
+
+    public function effacement($id_post){
+        session_start();
+        echo $id_post;
+        if (isset($_SESSION)){
+            $var_array = array("id_post" => $id_post);
+            $this->viewTemplate('app/view/admin/deletePostView.php', 'app/view/admin/Template.php', 'suppression de', $var_array);
+            $billet = new PostDAO();
+            $billet->delete($id_post);
+        }
+        else {
+            header('Location: /app/admin/login');
+        }
+
+    }
+
+    /*public function modification($url_view, $title, $type_modif){
+        session_start();
+        if (isset($_SESSION)){
+            $this->viewTemplate($url_view, 'app/view/admin/Template.php', $title);
+            $billet = new PostDAO();
+            $billet->$type_modif;
+        }
+        else {
+            header('Location: /app/admin/login');
+        }
+    }*/
 
 }

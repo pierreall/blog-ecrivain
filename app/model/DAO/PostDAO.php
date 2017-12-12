@@ -10,14 +10,15 @@ class PostDAO extends Model
 //methods
     public function create ()
     {
-//        $titre = htmlspecialchars($_POST['title']);
+        $titre = htmlspecialchars($_POST['title']);
 //        $contenu = htmlspecialchars($_POST['content_post']);
-        $titre = $_POST['title'];
+
         $contenu = $_POST['content_post'];
         date_default_timezone_set('Europe/Paris');
-        $date = date('Y-m-d H:i:s');
-//        $auteur = $_SESSION['pseudo'];
-        $auteur = 'Pierre';
+        $date = date('Y-m-d H:i:s');//        $titre = $_POST['title'];
+        $auteur = $_SESSION['pseudo'];
+//        $auteur = 'Pierre';
+
         var_dump($auteur);
 
 //        $auteur = htmlspecialchars($_POST['auteur']);
@@ -58,16 +59,20 @@ class PostDAO extends Model
         return $billets;
     }
 
-    public function update ()
+    public function update ($post_id)
     {
-        $req = $this->getPDO()->prepare('UPDATE billet SET ? = ? WHERE id_billet = ?');
-        $req->execute(array($column, $value, $this->getId()));
+        $titre = htmlspecialchars($_POST['title']);
+        $contenu = $_POST['content_post'];
+
+        $req = $this->getPDO()->prepare('UPDATE billet SET titre = ?, contenu = ?  WHERE id_billet = ?');
+//        var_dump($this->$titre);
+        $req->execute(array($titre, $contenu, $post_id));
     }
 
-    public function delete ()
+    public function delete ($post_id)
     {
-        $req = $this->getPDO()->query('DELETE FROM billet WHERE id_billet = ?');
-        $req->execute(array($this->getId()));
+        $req = $this->getPDO()->prepare('DELETE FROM billet WHERE id_billet = ?');
+        $req->execute(array($post_id));
 
     }
 

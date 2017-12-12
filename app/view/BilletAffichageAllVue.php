@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
                 <div class="post-preview">
-                    <a href="">
+                   <?php echo "<a href='/app/billet/affichage/'>" ?>;
                         <h2 class="post-title">
                             <?= $billet->getTitre() ?>
                         </h2>

@@ -17,14 +17,14 @@ class BilletControler extends Controler
     public function index(){
         $this->affichageAll();
     }
-    public function ajout(){
+/*    public function ajout(){
         $this->viewTemplate('app/view/admin/addPostView.php','app/view/admin/Template.php', 'Ajout d\'un nouveau Billet');
-       var_dump($_POST);
+        var_dump($_POST);
         if(isset($_POST['title']) && isset($_POST['content_post'])){
             $this->billet->create();
             var_dump('test create');
         }
-    }
+    }*/
 
     /**
      *  default method, display all tickets (homepage)
@@ -43,8 +43,8 @@ class BilletControler extends Controler
                 $var_array = array("titreBillet" => $donneeBilletRead[0]->getTitre(),
                     "auteurBillet" => $donneeBilletRead[0]->getAuteur(),
                     "dateBillet" => $donneeBilletRead[0]->getDate(),
-                    "contenuBillet" => htmlentities($donneeBilletRead[0]->getContenu()));
-                $this->viewTemplate('app/view/BilletAffichageVue.php', 'app/view/post.html', $var_array, $var_array);
+                    "contenuBillet" => $donneeBilletRead[0]->getContenu());
+                    $this->viewTemplate('app/view/BilletAffichageVue.php', 'app/view/post.html', $var_array, $var_array);
             }
             else {
                 ErreurControler::methodNoExist();
@@ -60,15 +60,15 @@ class BilletControler extends Controler
         }
     }
 
-    public function miseAJour($id_post){
-        $this->viewTemplate('app/view/admin/updatePostView.php','app/view/admin/Template.php', 'Mise à jour de ');
+   /* public function miseAJour($id_post){
+        $this->viewTemplate('app/view/admin/updatePostView.php','app/view/admin/Template.php', 'Mise à jour du  billet '.$id_post);
         $this->billet->update();
     }
 
     public function effacement(){
         $this->viewTemplate('app/view/admin/deletePostView.php', 'app/view/admin/Template.php', 'suppression de');
         $this->billet->delete();
-    }
+    }*/
 
 }
 

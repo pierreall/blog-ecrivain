@@ -10,7 +10,6 @@ class Controler {
      public function viewTemplate( $url_view, $url_template, $title, $array = null){
         if(isset($array)){
             extract($array);
-            var_dump($array);
         }
          ob_start();
         require $url_view;
