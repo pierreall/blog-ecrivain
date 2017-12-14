@@ -59,7 +59,7 @@ class PostDAO extends Model
         return $billets;
     }
 
-    public function update ($post_id)
+     public function update ($post_id)
     {
         $titre = htmlspecialchars($_POST['title']);
         $contenu = $_POST['content_post'];

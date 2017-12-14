@@ -1,7 +1,7 @@
 <?php
 namespace App\Model\DAO;
 class Post {
-    private $_id;
+    private $_id_billet;
     private $_date;
     private $_titre;
     private $_contenu;
@@ -24,6 +24,9 @@ class Post {
         }
     }
 
+    public function setId_billet($id_billet){
+        $this->_id_billet = $id_billet;
+    }
 
     public function setDate ($date)
     {
@@ -51,7 +54,7 @@ class Post {
 //getters
     public function getId ()
     {
-        return $this->_id;
+        return $this->_id_billet;
     }
 
 

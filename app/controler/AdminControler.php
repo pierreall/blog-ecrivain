@@ -43,7 +43,12 @@ class AdminControler extends Controler
         session_start();
         var_dump($_SESSION);
         if(isset($_SESSION['pseudo'])) {
-            $this->viewTemplate('app/view/admin/Welcome.php', 'app/view/admin/Template.php', 'Accueil Administration');
+            $billet = new PostDAO();
+            $donneeBilletAll = $billet->readAll();
+            $var_array = array("donneeBillet" => $donneeBilletAll);
+            var_dump($var_array);
+//                $this->viewTemplate('app/view/BilletAffichageAllVue.php','app/view/index.html', 'Bienvenue', $var_array);
+            $this->viewTemplate('app/view/admin/Welcome.php', 'app/view/admin/Template.php', 'Accueil Administration', $var_array);
         }
         else {
             header('Location: /app/admin/login');
@@ -169,17 +174,22 @@ class AdminControler extends Controler
     public function effacement($id_post){
         session_start();
         echo $id_post;
-        if (isset($_SESSION)){
-            $var_array = array("id_post" => $id_post);
-            $this->viewTemplate('app/view/admin/deletePostView.php', 'app/view/admin/Template.php', 'suppression de', $var_array);
-            $billet = new PostDAO();
-            $billet->delete($id_post);
-        }
-        else {
-            header('Location: /app/admin/login');
-        }
+            if (isset($_SESSION['pseudo'])){
+                if ($id_post > 1){
+                    $var_array = array("id_post" => $id_post);
+                    $this->viewTemplate('app/view/admin/deletePostView.php', 'app/view/admin/Template.php', 'suppression de', $var_array);
+                    $billet = new PostDAO();
+                    $billet->delete($id_post);
+                }
+                else {
+                    header('Location: /app/admin/home/?post=1');
+                }
 
-    }
+            }
+            else {
+                header('Location: /app/admin/login');
+            }
+        }
 
     /*public function modification($url_view, $title, $type_modif){
         session_start();
