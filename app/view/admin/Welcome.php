@@ -23,11 +23,18 @@ else {
     <?php foreach ($array['donneeBillet'] as $billet){ ?>
         <tr>
             <td ><?= $billet->getTitre() ?></td>
-            <?php echo '<td ><a href="/app/admin/miseAJour/'.$billet->getId().'"><i class="fa fa-refresh"></i></a></td>';
-        echo '<td id="suppr" ><a href="/app/admin/effacement/'.$billet->getId().'"><i class="fa fa-trash"></i>'.if($_GET["post"] = 1){ echo "impossible de supprimer ce billet";}.'</a></td>' ; ?>
+            <?php
+            echo '<td ><a href="/app/admin/miseAJour/'.$billet->getId().'"><i class="fa fa-refresh"></i></a></td>';
+            echo '<td id="suppr" ><a href="/app/admin/effacement/'.$billet->getId().'"><i class="fa fa-trash"></i></a></td>';
+            ?>
         </tr>
     <?php } ?>
+
 </table>
+<?php if(isset($_GET['suppr']) && $_GET['suppr'] == "interdit"){
+    echo '<div class="alert alert-warning">Impossible de supprimer le dernier billet</div>';
+}
+?>
 
 
 

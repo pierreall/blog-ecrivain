@@ -76,5 +76,16 @@ class PostDAO extends Model
 
     }
 
+    public function returnLastPost(){
+        $req = $this->getPDO()->query('SELECT * FROM billet ORDER BY id_billet DESC LIMIT 1');
+        $array = $req->fetchAll();
+        $billets = array();
+        foreach ($array as $objet){
+            $billet = new Post($objet);
+            $billets [] = $billet;
+        }
+        return $billets;
+    }
+
 }
 

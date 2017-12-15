@@ -51,13 +51,23 @@ class BilletControler extends Controler
             }
         }
         else {
-            $donneeBilletRead = $this->billet->read(1);
-            $var_array = array("titreBillet" => $donneeBilletRead[0]->getTitre(),
-                "auteurBillet" => $donneeBilletRead[0]->getAuteur(),
-                "dateBillet" => $donneeBilletRead[0]->getDate(),
-                "contenuBillet" => $donneeBilletRead[0]->getContenu());
-            $this->viewTemplate('app/view/BilletAffichageVue.php', 'app/view/post.html', $var_array, $var_array);
+//            $donneeBilletRead = $this->billet->read(1);
+//            $var_array = array("titreBillet" => $donneeBilletRead[0]->getTitre(),
+//                "auteurBillet" => $donneeBilletRead[0]->getAuteur(),
+//                "dateBillet" => $donneeBilletRead[0]->getDate(),
+//                "contenuBillet" => $donneeBilletRead[0]->getContenu());
+//            $this->viewTemplate('app/view/BilletAffichageVue.php', 'app/view/post.html', $var_array, $var_array);
+            $this->affichage_dernier_billet();
         }
+    }
+
+    public function affichage_dernier_billet(){
+        $lastPost = $this->billet->returnLastPost();
+        $var_array = array("titreBillet" => $lastPost[0]->getTitre(),
+            "auteurBillet" => $lastPost[0]->getAuteur(),
+            "dateBillet" => $lastPost[0]->getDate(),
+            "contenuBillet" => $lastPost[0]->getContenu());
+        $this->viewTemplate('app/view/BilletAffichageVue.php', 'app/view/post.html', $var_array, $var_array);
     }
 
    /* public function miseAJour($id_post){

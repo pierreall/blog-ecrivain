@@ -173,16 +173,17 @@ class AdminControler extends Controler
 
     public function effacement($id_post){
         session_start();
-        echo $id_post;
             if (isset($_SESSION['pseudo'])){
-                if ($id_post > 1){
+                $billet = new PostDAO();
+                $tab = $billet->returnLastPost();
+//                var_dump($tab[0]->getId());
+                if ($id_post !== $tab[0]->getId()){
                     $var_array = array("id_post" => $id_post);
                     $this->viewTemplate('app/view/admin/deletePostView.php', 'app/view/admin/Template.php', 'suppression de', $var_array);
-                    $billet = new PostDAO();
                     $billet->delete($id_post);
                 }
                 else {
-                    header('Location: /app/admin/home/?post=1');
+                    header('Location: /app/admin/home/?suppr=interdit');
                 }
 
             }

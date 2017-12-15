@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
 
@@ -38,10 +38,10 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="/app/">Accueil</a>
+                    <a class="nav-link" href="/">Accueil</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="about.html">Dernier Billet</a>
+                    <a class="nav-link" href="/app/billet/affichage_dernier_billet">Dernier Billet</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/app/admin/">Connection</a>
@@ -52,7 +52,7 @@
 </nav>
 
 <!-- Page Header -->
-<header class="masthead" style="background-image: url('img/contact-bg.jpg')">
+<header class="masthead" style="background-image: url('/app/view/img/contact-bg.jpg')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
