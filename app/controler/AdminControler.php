@@ -34,7 +34,10 @@ class AdminControler extends Controler
         }
     }
     public function logout(){
-        session_abort();
+        session_start();
+        session_destroy();
+        header('Location: /');
+
     }
 
 
@@ -137,13 +140,30 @@ class AdminControler extends Controler
                         "contenuBillet" => $donneeBilletRead[0]->getContenu(),
                         "idBillet" => $id_post);
                     $this->viewTemplate('app/view/admin/updatePostView.php', 'app/view/admin/Template.php', $var_array, $var_array);
-                    if(isset($_POST['title']) && isset($_POST['content_post'])){
-                        $billet->update($id_post);
-                    }
                 } else {
                     ErreurControler::methodNoExist();
                 }
             }
+        }
+        else {
+            header('Location: /app/admin/login');
+        }
+
+    }
+
+    public function validationMiseAJour($id_post){
+        if(isset($_SESSION['pseudo'])){
+            if (isset($id_post) && is_numeric($id_post)){
+                if(isset($_POST['title']) && isset($_POST['content_post'])){
+                    $billet = new PostDAO();
+                    $billet->update($id_post);
+                    header('Location: /app/billet/affichage/'.$id_post);
+                }
+                else {
+                    header('Location: /app/admin/home');
+                }
+            }
+
         }
         else {
             header('Location: /app/admin/login');
@@ -173,24 +193,55 @@ class AdminControler extends Controler
 
     public function effacement($id_post){
         session_start();
-            if (isset($_SESSION['pseudo'])){
-                $billet = new PostDAO();
-                $tab = $billet->returnLastPost();
+        if (isset($_SESSION['pseudo'])){
+            $billet = new PostDAO();
+            $tab = $billet->returnLastPost();
 //                var_dump($tab[0]->getId());
-                if ($id_post !== $tab[0]->getId()){
-                    $var_array = array("id_post" => $id_post);
-                    $this->viewTemplate('app/view/admin/deletePostView.php', 'app/view/admin/Template.php', 'suppression de', $var_array);
-                    $billet->delete($id_post);
-                }
-                else {
-                    header('Location: /app/admin/home/?suppr=interdit');
-                }
-
+            if ($id_post !== $tab[0]->getId()){
+//                $var_array = array("id_post" => $id_post);
+//                $this->viewTemplate('app/view/admin/deletePostView.php', 'app/view/admin/Template.php', 'suppression de', $var_array);
+//                if (isset($_POST['suppr']) && $_POST['suppr'] == "oui"){
+                $billet->delete($id_post);
+                header('Location: /app/admin/home');
+//                }
+//                else {
+//                    header('Location: /app/admin/home');
+//                }
             }
             else {
-                header('Location: /app/admin/login');
+                header('Location: /app/admin/home/?suppr=interdit');
             }
+
         }
+        else {
+            header('Location: /app/admin/login');
+        }
+    }
+
+//    public function validationEffacement($id_post){
+//        if (isset($_SESSION['pseudo'])){
+//            if (isset($id_post) && is_numeric($id_post)){
+//                if (isset($_POST['suppr']) && $_POST['suppr'] == "oui" ){
+//                    $billet = new PostDAO();
+//                    $billet->delete($id_post);
+//                    header('Location: /app/admin/home');
+//                }
+//                else {
+//                    header('Location: /app/admin/home');
+//                }
+//            }else {
+//                header('Location: /app/admin/home');
+//            }
+//        } else {
+//            header('Location: /app/admin/login');
+//        }
+//    }
+//    public function validationEffacement(){
+//        if ($_POST['suppr'] = "oui"){
+//            $billet = new PostDAO();
+//            $billet->delete($id_)
+//        }
+//    }
 
     /*public function modification($url_view, $title, $type_modif){
         session_start();

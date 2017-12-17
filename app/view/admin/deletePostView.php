@@ -1,9 +1,8 @@
 //suppression billet
-<?php echo '<form action="/app/admin/effacement/'.$id_post.'">
-    <label for="title">Titre :</label>
-    <input type="text" name="title" id="title" value="<?= $title ?>">
-    <textarea name="content_post" id="" cols="30" rows="10">
 
-    </textarea>
+<?php echo '<form action="/app/admin/validationEffacement/'.$id_post.'" method="post">
+    <label for="">Voulez vous vraiment supprimer ce billet ?</label>
+    <input type="radio" name="suppr" value="oui">
+    <input type="radio" name="suppr" value="non">
     <input type="submit" valider="Poster Billet">
 </form>';

@@ -9,28 +9,40 @@ else {
     header('Location: /app/admin/login');
 }
 */?>
+<div class="btn-group btn-group">
+    <div class="btn-group">
+        <a href="/app/admin/ajout"><button class="btn btn-default">Ajouter un Billet</button></a>
+    </div>
+    <div class="btn-group">
+        <a href=""><button class="btn btn-default">Modérer les commentaires</button></a>
+    </div>
+</div>
 
-<a href="/app/admin/ajout"><button class="btn btn-default">Ajouter un Billet</button></a>
 
-
-
-<table class="table">
-    <tr  class="">
-        <th >Titre du Billet</th>
-        <th>Mise à jour</th>
-        <th>Suppression</th>
-    </tr>
-    <?php foreach ($array['donneeBillet'] as $billet){ ?>
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
         <tr>
-            <td ><?= $billet->getTitre() ?></td>
-            <?php
-            echo '<td ><a href="/app/admin/miseAJour/'.$billet->getId().'"><i class="fa fa-refresh"></i></a></td>';
-            echo '<td id="suppr" ><a href="/app/admin/effacement/'.$billet->getId().'"><i class="fa fa-trash"></i></a></td>';
-            ?>
+            <th >Titre du Billet</th>
+            <th>Mise à jour</th>
+            <th>Suppression</th>
         </tr>
-    <?php } ?>
+        </thead>
 
-</table>
+        <?php foreach ($array['donneeBillet'] as $billet){ ?>
+            <tr>
+                <td ><?= $billet->getTitre() ?></td>
+                <?php
+                echo '<td ><a href="/app/admin/miseAJour/'.$billet->getId().'"><i class="fa fa-refresh"></i></a></td>';
+                echo '<td id="suppr" ><a href="/app/admin/effacement/'.$billet->getId().'"><i class="fa fa-trash"></i></a></td>';
+                ?>
+            </tr>
+        <?php } ?>
+    </table>
+</div>
+
+
+
 <?php if(isset($_GET['suppr']) && $_GET['suppr'] == "interdit"){
     echo '<div class="alert alert-warning">Impossible de supprimer le dernier billet</div>';
 }
