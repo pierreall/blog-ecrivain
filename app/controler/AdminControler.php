@@ -201,6 +201,7 @@ class AdminControler extends Controler
 //                $var_array = array("id_post" => $id_post);
 //                $this->viewTemplate('app/view/admin/deletePostView.php', 'app/view/admin/Template.php', 'suppression de', $var_array);
 //                if (isset($_POST['suppr']) && $_POST['suppr'] == "oui"){
+
                 $billet->delete($id_post);
                 header('Location: /app/admin/home');
 //                }
@@ -217,6 +218,16 @@ class AdminControler extends Controler
             header('Location: /app/admin/login');
         }
     }
+
+    public function editionCommentaire($id_commentaire){
+
+    }
+
+    public function supprimerCommentaire ($id_commentaire)
+    {
+
+    }
+
 
 //    public function validationEffacement($id_post){
 //        if (isset($_SESSION['pseudo'])){

@@ -43,7 +43,9 @@ class BilletControler extends Controler
                 $var_array = array("titreBillet" => $donneeBilletRead[0]->getTitre(),
                     "auteurBillet" => $donneeBilletRead[0]->getAuteur(),
                     "dateBillet" => $donneeBilletRead[0]->getDate(),
-                    "contenuBillet" => $donneeBilletRead[0]->getContenu());
+                    "contenuBillet" => $donneeBilletRead[0]->getContenu(),
+                    "idBillet" => $id_post
+                );
                     $this->viewTemplate('app/view/BilletAffichageVue.php', 'app/view/post.html', $var_array, $var_array);
             }
             else {
