@@ -19,17 +19,4 @@ class Controler {
         require $url_template;
     }
 
-    public function ajout(){
-
-    }
-    public function affichage($id_post){
-
-    }
-    public function miseAJour($id_post){
-
-    }
-    public function supprimer(){
-
-    }
-
 }

@@ -22,7 +22,7 @@
             <div class="col-lg-8 col-md-10 mx-auto">
                 <?= $contenuBillet ?>
                 <hr>
-                <a href="/app/commentaire/affichageCommentaire/<?= $idBillet ?>">Commentaire(s)</a>
+                <a href="/app/commentaire/affichageCommentaire/<?= $idBillet ?>"><?= $nbrCommentaire ?> Commentaire(s)</a>
             </div>
         </div>
     </div>

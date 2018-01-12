@@ -19,7 +19,7 @@ class PostDAO extends Model
         $auteur = $_SESSION['pseudo'];
 //        $auteur = 'Pierre';
 
-        var_dump($auteur);
+        //var_dump($auteur);
 
 //        $auteur = htmlspecialchars($_POST['auteur']);
 

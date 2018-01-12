@@ -2,6 +2,7 @@
 namespace App\Controler;
 
 
+use App\Model\DAO\CommentDAO;
 use App\Model\DAO\PostDAO;
 use App\Model\DAO\UserDAO;
 
@@ -15,7 +16,6 @@ class AdminControler extends Controler
     }
     public function index(){
         if(isset($_SESSION['pseudo'])){
-            //todo envoyer vers page d'accueil zone admin
             header('Location: /app/admin/home');
         }
         else {
@@ -44,13 +44,12 @@ class AdminControler extends Controler
 
     public function home(){
         session_start();
-        var_dump($_SESSION);
+//        var_dump($_SESSION);
         if(isset($_SESSION['pseudo'])) {
             $billet = new PostDAO();
             $donneeBilletAll = $billet->readAll();
             $var_array = array("donneeBillet" => $donneeBilletAll);
-            var_dump($var_array);
-//                $this->viewTemplate('app/view/BilletAffichageAllVue.php','app/view/index.html', 'Bienvenue', $var_array);
+//            var_dump($var_array);
             $this->viewTemplate('app/view/admin/Welcome.php', 'app/view/admin/Template.php', 'Accueil Administration', $var_array);
         }
         else {
@@ -64,14 +63,14 @@ class AdminControler extends Controler
         session_start();
 
         if(isset($_POST['pseudo']) && isset($_POST['password'])){
-            var_dump($_POST['pseudo']);
+            //var_dump($_POST['pseudo']);
             $pseudo = htmlspecialchars($_POST['pseudo']);
             $mdp = htmlspecialchars($_POST['password']);
 
             $user = new UserDAO();
             $row = $user->verif();
 
-            var_dump($row);
+            //var_dump($row);
 
             if (!empty($row)) {
 
@@ -79,7 +78,7 @@ class AdminControler extends Controler
 
                 if ($isOk) {
                     $_SESSION['pseudo'] = $row[0]['pseudo'];
-                    var_dump($_SESSION['pseudo']);
+                    //var_dump($_SESSION['pseudo']);
                     header('Location: /app/admin/home');
                 } else {
                     echo "verifiez vos données";
@@ -99,35 +98,21 @@ class AdminControler extends Controler
     }
     public function ajout(){
         session_start();
-        var_dump($_SESSION);
+        //var_dump($_SESSION);
         if (isset($_SESSION['pseudo'])){
             $this->viewTemplate('app/view/admin/addPostView.php','app/view/admin/Template.php', 'Ajout d\'un nouveau Billet');
-            var_dump($_POST);
+            // var_dump($_POST);
             if(isset($_POST['title']) && isset($_POST['content_post'])){
                 $billet = new PostDAO();
                 $billet->create();
-                var_dump('test create');
+                //var_dump('test create');
             }
         }
         else {
             header('Location: /app/admin/login');
         }
     }
-//    public function miseAJour($id_post){
-//        session_start();
-//        if(isset($_SESSION['pseudo'])){
-//            $this->viewTemplate('app/view/admin/updatePostView.php','app/view/admin/Template.php', 'Mise à jour du billet'.$id_post);
-////            var_dump('test'); die();
-//            if(isset($_POST['title']) && isset($_POST['content_post'])){
-//                $billet = new PostDAO();
-//                $billet->update();
-//            }
-//        }
-//        else {
-//            header('Location: /app/admin/login');
-//        }
-//
-//    }
+
     public function miseAJour($id_post)
     {
         session_start();
@@ -152,8 +137,10 @@ class AdminControler extends Controler
     }
 
     public function validationMiseAJour($id_post){
+        session_start();
         if(isset($_SESSION['pseudo'])){
             if (isset($id_post) && is_numeric($id_post)){
+
                 if(isset($_POST['title']) && isset($_POST['content_post'])){
                     $billet = new PostDAO();
                     $billet->update($id_post);
@@ -171,25 +158,6 @@ class AdminControler extends Controler
 
     }
 
-//    public function miseAJour($id_post)
-//    {var_dump('1er');
-//        if (isset($id_post) && is_numeric($id_post)) {
-//            var_dump('2em');
-//            $billet = new PostDAO();
-//            var_dump($billet);
-//            var_dump('3em');
-//            $donneeBilletRead = $billet->update();
-//            var_dump($donneeBilletRead);
-//            $var_array = array("titreBillet" => $donneeBilletRead[0]->getTitre(),
-//                "contenuBillet" => $donneeBilletRead[0]->getContenu(),
-//                "idBillet" => $donneeBilletRead[0]->getId());
-//            $this->viewTemplate('app/view/admin/updatePostView.php', 'app/view/admin/Template.php', $var_array, $var_array);
-//            $billet->update();
-//        } else {
-//            ErreurControler::methodNoExist();
-//        }
-//    }
-
 
     public function effacement($id_post){
         session_start();
@@ -198,16 +166,10 @@ class AdminControler extends Controler
             $tab = $billet->returnLastPost();
 //                var_dump($tab[0]->getId());
             if ($id_post !== $tab[0]->getId()){
-//                $var_array = array("id_post" => $id_post);
-//                $this->viewTemplate('app/view/admin/deletePostView.php', 'app/view/admin/Template.php', 'suppression de', $var_array);
-//                if (isset($_POST['suppr']) && $_POST['suppr'] == "oui"){
 
                 $billet->delete($id_post);
                 header('Location: /app/admin/home');
-//                }
-//                else {
-//                    header('Location: /app/admin/home');
-//                }
+
             }
             else {
                 header('Location: /app/admin/home/?suppr=interdit');
@@ -218,52 +180,75 @@ class AdminControler extends Controler
             header('Location: /app/admin/login');
         }
     }
+    public function signalement($id_comment){
+        if (isset($id_comment) && is_numeric($id_comment)){
+            $commentModerate = new CommentDAO();
+            $commentModerate->reportComment($id_comment);
+            if (isset($_SERVER['HTTP_REFERER'])){
+                header('Location: '.$_SERVER['HTTP_REFERER']);
+            }
+            else {
+                header('Location: /');
+            }
 
-    public function editionCommentaire($id_commentaire){
-
+        }
+        else {
+            ErreurControler::methodNoExist();
+        }
     }
 
-    public function supprimerCommentaire ($id_commentaire)
-    {
-
-    }
-
-
-//    public function validationEffacement($id_post){
-//        if (isset($_SESSION['pseudo'])){
-//            if (isset($id_post) && is_numeric($id_post)){
-//                if (isset($_POST['suppr']) && $_POST['suppr'] == "oui" ){
-//                    $billet = new PostDAO();
-//                    $billet->delete($id_post);
-//                    header('Location: /app/admin/home');
-//                }
-//                else {
-//                    header('Location: /app/admin/home');
-//                }
-//            }else {
-//                header('Location: /app/admin/home');
-//            }
-//        } else {
-//            header('Location: /app/admin/login');
-//        }
-//    }
-//    public function validationEffacement(){
-//        if ($_POST['suppr'] = "oui"){
-//            $billet = new PostDAO();
-//            $billet->delete($id_)
-//        }
-//    }
-
-    /*public function modification($url_view, $title, $type_modif){
+    public function commentaireAModerer(){
         session_start();
-        if (isset($_SESSION)){
-            $this->viewTemplate($url_view, 'app/view/admin/Template.php', $title);
-            $billet = new PostDAO();
-            $billet->$type_modif;
+        if (isset($_SESSION['pseudo'])){
+            $commentaire = new CommentDAO();
+            $commentaireAModerer = $commentaire->commentReported();
+            $var_array = array("moderateComment" => $commentaireAModerer
+
+            );
+            $this->viewTemplate('app/view/admin/moderation.php', 'app/view/admin/Template.php', 'Modération des Commentaires', $var_array);
+        }
+    }
+
+    public function validationEditComment($id_comment){
+        session_start();
+        if(isset($_SESSION['pseudo'])){
+            if (isset($id_comment) && is_numeric($id_comment)){
+                $com = new CommentDAO();
+                if ($com->readUnique($id_comment)){
+                    if(isset($_POST['title']) && isset($_POST['content_com'])){
+                        $commentaire = new CommentDAO();
+                        $commentaire->update($id_comment);
+                        var_dump($commentaire->update($id_comment));
+                        header('Location: /app/admin/commentaireAModerer'); //renvoi au tableau de modération
+                    }
+                    else {
+                        header('Location: /app/admin/home');//renvoi au tableau de moderation
+                    }
+                }
+                else {
+                    header('Location: /app/admin/home');
+                }
+
+            }
+
         }
         else {
             header('Location: /app/admin/login');
         }
-    }*/
 
+    }
+
+    public function supprimerCommentaire ($id_comment)
+    {
+        session_start();
+        if (isset($_SESSION['pseudo'])){
+            $commentaire = new CommentDAO();
+            $commentaire->delete($id_comment);
+            header('Location: /app/admin/commentaireAModerer');
+        }
+        else {
+            header ('Location: /app/admin/login');
+        }
+
+    }
 }

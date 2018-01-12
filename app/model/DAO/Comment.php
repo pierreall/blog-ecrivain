@@ -1,11 +1,13 @@
 <?php
 namespace App\Model\DAO;
 class Comment {
-    private $_id;
+    private $_id_commentaire;
     private $_date;
     private $_titre;
     private $_contenu;
     private $_auteur;
+    private $_id_billet;
+    private $_moderation;
 
 
     public function __construct ($objet)
@@ -23,6 +25,10 @@ class Comment {
                 $this->$method($value);
             }
         }
+    }
+
+    public function setId_commentaire ($id_commentaire){
+        $this->_id_commentaire = $id_commentaire;
     }
 
     public function setDate ($date)
@@ -48,10 +54,18 @@ class Comment {
         $this->_auteur = $auteur;
     }
 
+    public function setId_billet($id_billet){
+        $this->_id_billet = $id_billet;
+    }
+
+    public function setModeration($moderation){
+        $this->_moderation = $moderation;
+    }
+
 //getters
     public function getId ()
     {
-        return $this->_id;
+        return $this->_id_commentaire;
     }
 
 
@@ -76,5 +90,13 @@ class Comment {
     public function getAuteur ()
     {
         return $this->_auteur;
+    }
+
+    public function getIdBillet(){
+        return $this->_id_billet;
+    }
+
+    public function getModeration(){
+        return $this->_moderation;
     }
 }

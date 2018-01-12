@@ -1,10 +1,3 @@
-<?php
-//use App\Controler\ErreurControler;
-//?>
 <p class="alert alert-info">
-    Pages non trouvé
+    Oups désolé la page n'existe pas !
 </p>
-
-<?php $contenu = ob_get_contents();?>
-<?php $title = 'Erreur 404' ?>
-<?php include 'app/view/gabarit.php'; ?>

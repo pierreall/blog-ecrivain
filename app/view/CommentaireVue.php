@@ -5,12 +5,13 @@
     </div>
     <div class="form-group">
         <label for="">Titre</label>
-        <input type="text" name="title" placeholder="titre" class="form-control">
+        <input type="text" name="title" placeholder="titre" class="form-control" required>
     </div>
     <div class="form-group">
         <label for="">Commentaire</label>
-        <textarea name="content_com" id="" cols="30" rows="10" required class="form-control">
-        Votre commentaire
+        <textarea name="content_com" id="" cols="30" rows="10" required class="form-control"
+                  placeholder="Votre commentaire">
+
     </textarea>
     </div>
 
@@ -22,7 +23,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
-                <div class="post-preview border border-default">
+                <div class="post-preview border alert alert-info">
 
                     <h2 class="post-title" style="font-size: 1.25em;">
                         <?= $commentaire->getTitre() ?>
@@ -30,13 +31,19 @@
                     <p style="font-size: 0.8em;">
                         <?= $commentaire->getContenu();?>
                     </p>
-                    <p class="post-meta" style="font-size: 0.8em">Posté par
+                    <p class="post-meta" style="font-size: 0.7em">Posté par
                         <?= $commentaire->getAuteur() ?>
-                        le <?= $commentaire->getDate() ?></p>
-                    <a href="/app/admin/commentaire/"><i class="fa fa-exclamation-triangle" aria-hidden="true">Signaler ce message</i></a>
-                    <hr>
+                        le <?= $commentaire->getDate() ?>
+                    <!--<?= var_dump($commentaire) ?>-->
+                        <br> <a href="/app/admin/signalement/<?= $commentaire->getId () ?>"><i class="fa fa-exclamation-triangle" aria-hidden="true">Signaler ce message</i></a>
+<!--                    <hr>-->
+                    </p>
                 </div>
             </div>
         </div>
     </div>
+    <br>
 <?php } ?>
+
+
+<!--/app/commentaire/affichageCommentaire/--><?//= $IdBillet ?>
