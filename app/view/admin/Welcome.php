@@ -9,11 +9,12 @@ else {
     header('Location: /app/admin/login');
 }
 */?>
+<!--vue page d'accueil zone admin , accés tableau modération billet-->
 <div class="">
     <div class="btn-group">
-        <a href="/app/admin/ajout"><button class="btn btn-outline-info">Ajouter un Billet</button></a>
+        <a href="/app/admin/ajout" class="btn btn-outline-info" role="button" aria-pressed="true">Ajouter un Billet</a>
 
-        <a href="/app/admin/commentaireAModerer"><button class="btn btn-outline-info">Modérer les commentaires</button></a>
+        <a href="/app/admin/commentaireAModerer" class="btn btn-outline-info" role="button" aria-pressed="true">Modérer les commentaires</a>
     </div>
 </div>
 

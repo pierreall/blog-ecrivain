@@ -1,3 +1,4 @@
+<!--vue pour l'ajout d'un billet-->
 <form action="/app/admin/ajout" method="post">
     <div class="form-group">
         <label for="title">Titre :</label>

@@ -1,22 +1,37 @@
-<form action="/app/commentaire/affichageCommentaire/<?= $IdBillet ?>" method="post">
-    <div class="form-group">
-        <label for="">Pseudo/ ou nom</label>
-        <input type="text" name="author" placeholder="Votre pseudo" class="form-control">
+<header class="masthead" style="background-image: url('/app/view/img/paysage.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="post-heading">
+                    <h1><?= $titreBillet ?></h1>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="form-group">
-        <label for="">Titre</label>
-        <input type="text" name="title" placeholder="titre" class="form-control" required>
-    </div>
-    <div class="form-group">
-        <label for="">Commentaire</label>
-        <textarea name="content_com" id="" cols="30" rows="10" required class="form-control"
-                  placeholder="Votre commentaire">
+</header>
+
+<div class="container">
+    <form action="/app/commentaire/affichageCommentaire/<?= $IdBillet ?>" method="post">
+        <div class="form-group">
+            <label for="author">Pseudo/ ou nom</label>
+            <input type="text" name="author" id="author" placeholder="Votre pseudo" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="titre">Titre</label>
+            <input type="text" name="title" id="titre" placeholder="titre" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="">Commentaire</label>
+            <textarea name="content_com" id="" cols="30" rows="10" required class="form-control"
+                      placeholder="Votre commentaire">
 
     </textarea>
-    </div>
+        </div>
 
-    <input type="submit" value="envoyer" class="btn btn-default">
-</form>
+        <input type="submit" value="envoyer" class="btn btn-default">
+    </form>
+</div>
+
 <hr>
 <br>
 <?php foreach ($array['donneeCommentaire'] as $commentaire) {?>

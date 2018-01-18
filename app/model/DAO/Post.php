@@ -30,6 +30,8 @@ class Post {
 
     public function setDate ($date)
     {
+        $date = new \DateTime($date);
+        $date = $date->format('d-m-Y'.' à '.'H:i:s');
         $this->_date = $date;
     }
 

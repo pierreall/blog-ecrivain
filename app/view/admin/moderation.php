@@ -1,6 +1,7 @@
+<!--vue pour la moderation des commentaires en zone admin-->
 <?php
 echo '<div class="form-group">
-<a href="/app/admin/home"><button class="btn btn-outline-info">Retour Accueil Administration</button></a>
+<a href="/app/admin/home" class="btn btn-outline-info" role="button" aria-pressed="true">Retour Accueil Administration</a>
 </div>
 
 <div class="table-responsive">
@@ -19,8 +20,8 @@ echo '<div class="form-group">
 
     <tr>
         <?php echo '<form action="/app/admin/validationEditComment/'.$commentaire->getId().'" method="post">'; ?>
-        <td><input type="text" value="<?= $commentaire->getTitre() ?>" name="title"></td>
-        <td><textarea name="content_com" cols="16" rows="3"><?= $commentaire->getContenu() ?></textarea></td>
+        <td><input type="text" value="<?= $commentaire->getTitre() ?>" name="title" style="font-size: 0.85em;"></td>
+        <td><textarea name="content_com" cols="17" rows="3" style="font-size: 0.85em;"><?= $commentaire->getContenu() ?></textarea></td>
         <?php
         echo '<td ><button type="submit" class="btn btn-default"><i class="fa fa-refresh"></i> modérer</button></td>';
         echo '</form>';
@@ -36,35 +37,3 @@ echo '<div class="form-group">
 <?php } ?>
 </table>
 </div>
-
-
-
-<!--<tr>
-    <td><input type="text" value="<?/*= $commentaire->getTitre() */?>" name="title"></td>
-    <td><input type="text" value="<?/*= $commentaire->getContenu() */?>" name="content_com"></td>
-    <?php
-/*    echo '<td ><input type="submit" value="modifier"><a href="/app/admin/editionCommentaire/'.$commentaire->getId().'"><i class="fa fa-refresh"></i></a></td>';
-    echo '<td id="suppr" ><a href="/app/admin/supprimerCommentaire/'.$commentaire->getId().'"><i class="fa fa-trash"></i></a></td>';
-    */?>
-</tr>-->
-<!--div class="table-responsive">
-<table class="table table-hover">
-    <thead>
-    <tr>
-        <th >Titre du Billet</th>
-        <th>Mise à jour</th>
-        <th>Suppression</th>
-    </tr>
-    </thead>
-
-    <?php /*foreach ($array['donneeBillet'] as $billet){ */?>
-        <tr>
-            <td ><?/*= $billet->getTitre() */?></td>
-            <?php
-/*            echo '<td ><a href="/app/admin/miseAJour/'.$billet->getId().'"><i class="fa fa-refresh"></i></a></td>';
-            echo '<td id="suppr" ><a href="/app/admin/effacement/'.$billet->getId().'"><i class="fa fa-trash"></i></a></td>';
-            */?>
-        </tr>
-    <?php /*} */?>
-</table>
-</div>-->

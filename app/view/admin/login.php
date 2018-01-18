@@ -1,3 +1,4 @@
+<!--formulaire de connexion pour la zone admin-->
 <form name="sentMessage" id="contactForm" action="http://blog-ecrivain/app/admin/verif" method="post">
     <div class="control-group">
         <div class="form-group floating-label-form-group controls">

@@ -10,26 +10,30 @@ class ErreurControler extends Controler {
     public function __construct ()
     {
 //        ob_start();
-//        include 'app/view/Erreur.php';
+//        include 'app/view/ErrorView.php';
     }
+//    public function index(){
+//        $this->noExist();
+//    }
 
 //    static public function controlerNoExist(){
 //     ob_start();
-//        include "app/view/Erreur.php";
+//        include "app/view/ErrorView.php";
 //
 //    }
 
    static public function methodNoExist(){
 //       self::$method = false;
 //       ob_start();
-//       include 'app/view/Erreur.php';
-//       ->viewTemplate('app/view/Erreur.php','app/view/post.html', 'Erreur 404');
+//       include 'app/view/ErrorView.php';
+//       ->viewTemplate('app/view/ErrorView.php','app/view/post.php', 'Erreur 404');
        header('Location: /app/erreur/noExist');
 
     }
 
     public function noExist(){
-        $this->viewTemplate('app/view/Erreur.php', 'app/view/admin/Template.php', 'Erreur 404');
+        session_start();
+        $this->viewTemplate('app/view/ErrorView.php', 'app/view/Error.php', 'Erreur 404');
     }
 
 }
