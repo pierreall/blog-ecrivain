@@ -2,10 +2,11 @@
 namespace App\Model;
 
 
+
+
 use App\Config\Config;
 use App\Controler\BilletControler;
 use App\Controler\ErreurControler;
-
 
 class Model extends Config
 {
@@ -53,9 +54,11 @@ class Model extends Config
         return $this->pdo;
     }
 }
-
-/*Model::$hostname = 'localhost';
-Model::$dbname = 'blog-ecrivain';
-Model::$user = 'root';
-Model::$pswd = '';*/
+$config = new Config();
+$config->config();
+var_dump($config);
+//Model::$hostname = 'localhost';
+//Model::$dbname = 'blog-ecrivain';
+//Model::$user = 'root';
+//Model::$pswd = '';
 
