@@ -1,20 +1,17 @@
 <?php
-namespace App\Config;
+namespace App;
 
 use App\Model\Model;
-class Config {
-
-
-
-    /*Configuration de l'accés pdo en bdd*/
-public function config ()
+class Config
 {
-    Model::$hostname = 'localhost';
-    Model::$dbname = 'blog-ecrivain';
-    Model::$user = 'root';
-    Model::$pswd = '';
-}
-
+    // Configuration of database access by pdo
+    public static function config_db ()
+    {
+        Model::$hostname = 'localhost';
+        Model::$dbname = 'blog-ecrivain';
+        Model::$user = 'root';
+        Model::$pswd = '';
+    }
 }
 
 

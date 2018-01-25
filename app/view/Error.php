@@ -5,8 +5,7 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+
 
     <title><?= $title ?></title>
 
@@ -28,7 +27,7 @@
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
-        <a class="navbar-brand" href="index.php">Billet simple pour l'Alaska</a>
+        <a class="navbar-brand" href="/">Billet simple pour l'Alaska</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             Menu
             <i class="fa fa-bars"></i>
@@ -58,7 +57,7 @@
 </nav>
 
 <!-- Page Header -->
-<header class="masthead" style="background-image: url('/app/view/img/avion_rouge.png')">
+<header class="masthead" style="background-image: url('/app/view/img/red_plane.png')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
@@ -72,11 +71,6 @@
 <div class="container">
     <?= $contenu ?>
 </div>
-
-<!-- Pager -->
-<!--<div class="clearfix">-->
-<!--    <a class="btn btn-secondary float-right" href="/app/billet/affichage_dernier_billet">Dernier Billets &rarr;</a>-->
-<!--</div>-->
 
 
 <hr>

@@ -1,4 +1,4 @@
-<!--vue pour la mise a jour des billets-->
+<!--view for updating the posts-->
 <form action="/app/admin/validationMiseAJour/<?= $idBillet ?>" method="post">
     <label for="title">Titre :</label>
     <input type="text" name="title" id="title" value="<?= $title ?>">

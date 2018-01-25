@@ -1,3 +1,4 @@
+<!--template page d'accueil du blog-->
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -5,8 +6,6 @@
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
 
   <title><?= $title ?></title>
 
@@ -58,7 +57,7 @@
 </nav>
 
 <!-- Page Header -->
-<header class="masthead" style="background-image: url('/app/view/img/avion_rouge.png')">
+<header class="masthead" style="background-image: url('/app/view/img/red_plane.png')">
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
@@ -71,29 +70,7 @@
   </div>
 </header>
 <?= $contenu ?>
-<!-- <?php foreach ($donneeBilletAll as $billet) {?>
-&lt;!&ndash; Main Content &ndash;&gt;
-<div class="container">
-<div class="row">
- <div class="col-lg-8 col-md-10 mx-auto">
-   <div class="post-preview">
-     <a href="post.html">
-       <h2 class="post-title">
-         &lt;!&ndash; Man must explore, and this is exploration at its greatest&ndash;&gt;
-         <?= $billet->getTitre() ?>
-       </h2>
-       &lt;!&ndash;                    <h3 class="post-subtitle">&ndash;&gt;
-       &lt;!&ndash;                        Problems look mighty small from 150 miles up&ndash;&gt;
-       &lt;!&ndash;                    </h3>&ndash;&gt;
-     </a>
-     <p class="post-meta">Posté par
-       <a href="#"><?= $billet->getAuteur() ?></a>
-       le <?= $billet->getDate() ?></p>
-   </div>
- </div>
-</div>
-</div>
-<?php } ?>-->
+
 <!-- Pager -->
 <div class="clearfix">
   <a class="btn btn-secondary float-right" href="/app/billet/affichage_dernier_billet">Dernier Billets &rarr;</a>

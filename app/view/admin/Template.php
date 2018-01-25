@@ -1,4 +1,4 @@
-<!--Template pour la zone admin-->
+<!--Template for the admin area-->
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -6,8 +6,7 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+
     <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
     <script>tinymce.init({ selector: '#content' });</script>
 
@@ -68,7 +67,6 @@
             <div class="col-lg-8 col-md-10 mx-auto">
                 <div class="page-heading">
                     <h1><?= $title ?></h1>
-                    <!--                    <span class="subheading">Have questions? I have answers (maybe).</span>-->
                 </div>
             </div>
         </div>
@@ -129,9 +127,6 @@
 <script src="/app/view/vendor/popper/popper.min.js"></script>
 <script src="/app/view/vendor/bootstrap/js/bootstrap.min.js"></script>
 
-<!-- Contact Form JavaScript -->
-<!--<script src="/app/view/js/jqBootstrapValidation.js"></script>-->
-<!--<script src="/app/view/js/contact_me.js"></script>-->
 
 <!-- Custom scripts for this template -->
 <script src="/app/view/js/clean-blog.min.js"></script>

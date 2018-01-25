@@ -11,7 +11,6 @@ class User {
     public function __construct ($objet)
     {
         $this->hydrate($objet);
-//        echo 'test : '.$this->getTitre();
     }
 
     public function hydrate(array $donnees){

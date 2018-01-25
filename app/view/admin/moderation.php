@@ -1,4 +1,4 @@
-<!--vue pour la moderation des commentaires en zone admin-->
+<!--view for moderation of comments in admin area-->
 <?php
 echo '<div class="form-group">
 <a href="/app/admin/home" class="btn btn-outline-info" role="button" aria-pressed="true">Retour Accueil Administration</a>

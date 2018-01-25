@@ -9,19 +9,13 @@ use App\Model\DAO\UserDAO;
 
 class AdminControler extends Controler
 {
-    /**
-     * @var
-     */
-    private $admin;
 
-    /**
-     * AdminControler constructor.
-     */
+
     public function __construct ()
     {
 
     }
-// méthode appelé par default
+// default method
     public function index(){
         if(isset($_SESSION['pseudo'])){
             header('Location: /app/admin/home');
@@ -32,7 +26,7 @@ class AdminControler extends Controler
         }
     }
 
-//connexion à la zone admin
+//login to admin area
     public function login()
     {
         session_start();
@@ -43,7 +37,7 @@ class AdminControler extends Controler
             header('Location: /app/admin/home');
         }
     }
-    //déconnexion de la zone admin
+    //logout session and admin area
     public function logout(){
         session_start();
         session_destroy();
@@ -52,13 +46,13 @@ class AdminControler extends Controler
     }
 
 
-
+//admin home page, moderate table for post
     public function home(){
         session_start();
         if(isset($_SESSION['pseudo'])) {
             $post = new PostDAO();
-            $donneeBilletAll = $post->readAll();
-            $var_array = array("donneeBillet" => $donneeBilletAll);
+            $allPostData = $post->readAll();
+            $var_array = array("donneeBillet" => $allPostData);
             $this->viewTemplate('app/view/admin/Welcome.php', 'app/view/admin/Template.php', 'Accueil Administration', $var_array);
         }
         else {
@@ -67,7 +61,7 @@ class AdminControler extends Controler
 
     }
 
-    //verifie si les identifiants de connexion de la zone admin correspondent à ceux enregistré en base de données
+    //check if the login of the administrator area correspond to those registered in the database
     public function verif(){
 
         session_start();
@@ -103,7 +97,7 @@ class AdminControler extends Controler
         }
 
     }
-    //ajoute un nouveau billet au blog
+    //add a new post
     public function ajout(){
         session_start();
         if (isset($_SESSION['pseudo'])){
@@ -117,7 +111,7 @@ class AdminControler extends Controler
             header('Location: /app/admin/login');
         }
     }
-//mise à jour d'un billet du blog : récupère le contenu du billet et l'affiche dans une interface WYSIWYW
+//update of a blog post: retrieves the contents of the post and displays it in a WYSIWYG interface
     public function miseAJour($id_post)
     {
         session_start();
@@ -125,9 +119,9 @@ class AdminControler extends Controler
             if (isset($id_post) && is_numeric($id_post)) {
                 $post = new PostDAO();
                 if ($post->read($id_post)) {
-                    $donneeBilletRead = $post->read($id_post);
-                    $var_array = array("title" => $donneeBilletRead[0]->getTitre(),
-                        "contenuBillet" => $donneeBilletRead[0]->getContenu(),
+                    $dataPostRead = $post->read($id_post);
+                    $var_array = array("title" => $dataPostRead[0]->getTitre(),
+                        "contenuBillet" => $dataPostRead[0]->getContenu(),
                         "idBillet" => $id_post);
                     $this->viewTemplate('app/view/admin/updatePostView.php', 'app/view/admin/Template.php', $var_array, $var_array);
                 } else {
@@ -140,7 +134,7 @@ class AdminControler extends Controler
         }
 
     }
-//mise à jour d'un billet du blog : enregistre en bd le changement effectué sur le billet.
+//update of a blog post : records in database the change made on the post.
     public function validationMiseAJour($id_post){
         session_start();
         if(isset($_SESSION['pseudo'])){
@@ -163,7 +157,7 @@ class AdminControler extends Controler
 
     }
 
-//supprimer un billet de blog
+//delete a blog post
     public function effacement($id_post){
         session_start();
         if (isset($_SESSION['pseudo'])){
@@ -185,7 +179,7 @@ class AdminControler extends Controler
             header('Location: /app/admin/login');
         }
     }
-    //method appelé quand un utilisateur signal un commentaire
+    //method called when a user  signals a comment
     public function signalement($id_comment){
         if (isset($id_comment) && is_numeric($id_comment)){
             $commentModerate = new CommentDAO();
@@ -203,7 +197,7 @@ class AdminControler extends Controler
         }
     }
 
-    //récupère l'ensemble des commentaires et les affiches en zone admin en vue de leur éventuel modérations
+    //retrieves all comments and posters in admin area for possible moderations
     public function commentaireAModerer(){
         session_start();
         if (isset($_SESSION['pseudo'])){
@@ -216,7 +210,7 @@ class AdminControler extends Controler
         }
     }
 
-    // met à jour en base de données les commentaires modérés
+    // update in database moderate comments
     public function validationEditComment($id_comment){
         session_start();
         if(isset($_SESSION['pseudo'])){
@@ -245,7 +239,7 @@ class AdminControler extends Controler
         }
 
     }
-//supprime un commentaires de la base de données
+//delete a comment from the database
     public function supprimerCommentaire ($id_comment)
     {
         session_start();

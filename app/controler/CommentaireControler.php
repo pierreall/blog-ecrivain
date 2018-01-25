@@ -13,46 +13,46 @@ class CommentaireControler extends Controler{
     {
 
     }
-    //method par default
+    //default method
     public function index(){
         header('Location: /');
     }
 
-//permet d'ajouter des nouveaux commentaires et affiche les commentaires créé et existant lié au billet
+//add new comments and display created and existing comments related to the post
     public function affichageCommentaire($id_post){
         session_start();
         if (isset($id_post) && is_numeric($id_post)){
-            $billet = new PostDAO();
-            if(!$billet->read($id_post)){
+            $post = new PostDAO();
+            if(!$post->read($id_post)){
                 ErreurControler::methodNoExist();
                 exit();
             }
-            $commentaire = new CommentDAO();
+            $comment = new CommentDAO();
             if(isset($_POST['title']) && isset($_POST['content_com'])){
 
-                $commentaire->create($id_post);
+                $comment->create($id_post);
             }
 
 
-            $donneeCommentairetAll = $commentaire->read($id_post);
-            $pos_com = $billet->read($id_post);
-            $var_array = array("donneeCommentaire" => $donneeCommentairetAll,
+            $allCommentsData = $comment->read($id_post);
+            $post_com = $post->read($id_post);
+            $var_array = array("donneeCommentaire" => $allCommentsData,
                 "IdBillet" => $id_post,
-                "titreBillet" => 'Commentaire(s) : '.$pos_com[0]->getTitre()
+                "titreBillet" => 'Commentaire(s) : '.$post_com[0]->getTitre()
             );
 
-            $this->viewTemplate('app/view/commentaireVue.php','app/view/post.php', '', $var_array);
+            $this->viewTemplate('app/view/commentView.php','app/view/post.php', '', $var_array);
 
         } else {
             ErreurControler::methodNoExist();
         }
     }
 
-    //récupére le nombre de commentaire qui sera ensuite affichagé sur la page du billet
+    //retrieve the number of comments that will be displayed on the post page
     public function compteurCommentaire($id_post){
         if (isset($id_post) && is_numeric($id_post)){
-            $commentaire = new CommentDAO();
-            $commentaire->commentCounter($id_post);
+            $comment = new CommentDAO();
+            $comment->commentCounter($id_post);
         }
     }
 

@@ -1,9 +1,7 @@
 <?php
 use App\Autoloader;
 use App\Router\Router;
-
-use App\Controler\BilletControler;
-
+//app start
  require 'App/Autoloader.php';
 
  Autoloader::register();

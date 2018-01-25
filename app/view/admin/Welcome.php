@@ -1,15 +1,4 @@
-<?php
-/*
-// bienvenue.php
-session_start();
-if(isset($_SESSION['pseudo'])) {
-
-}
-else {
-    header('Location: /app/admin/login');
-}
-*/?>
-<!--vue page d'accueil zone admin , accés tableau modération billet-->
+<!--view home page admin area, table moderation post-->
 <div class="">
     <div class="btn-group">
         <a href="/app/admin/ajout" class="btn btn-outline-info" role="button" aria-pressed="true">Ajouter un Billet</a>

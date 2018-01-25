@@ -1,36 +1,16 @@
 <?php
 namespace App\Model;
 
+use App\Config;
 
-
-
-use App\Config\Config;
-use App\Controler\BilletControler;
-use App\Controler\ErreurControler;
-
-class Model extends Config
+class Model
 {
     /**
-     * @var \PDO
-     * se connecter à la base de donné
+     * connect to the database
+     * the variables must be modified with the file config.php
      */
     protected $pdo;
 
-    /*public function __construct(){
-        try
-        {
-            $this->pdo = new \PDO('mysql:host=localhost;dbname=blog-ecrivain', 'root', '');
-        }
-        catch (\Exception $e)
-        {
-            die ('Erreur :'.$e->getMessage());
-        }
-    }
-
-
-        public function getPDO(){
-            return $this->pdo;
-        }*/
     public static $hostname;
     public static $dbname;
     public static $user;
@@ -40,6 +20,7 @@ class Model extends Config
     public function __construct(){
         try
         {
+            Config::config_db();
             $this->pdo = new \PDO('mysql:host='.self::$hostname.';dbname='.  self::$dbname.'', ''.self::$user.'', ''. self::$pswd.'');
         }
         catch (\Exception $e)
@@ -54,11 +35,4 @@ class Model extends Config
         return $this->pdo;
     }
 }
-$config = new Config();
-$config->config();
-var_dump($config);
-//Model::$hostname = 'localhost';
-//Model::$dbname = 'blog-ecrivain';
-//Model::$user = 'root';
-//Model::$pswd = '';
 

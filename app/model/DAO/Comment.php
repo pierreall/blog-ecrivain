@@ -1,24 +1,22 @@
 <?php
 namespace App\Model\DAO;
 class Comment {
-    private $_id_commentaire;
+    private $_id_comment;
     private $_date;
-    private $_titre;
-    private $_contenu;
-    private $_auteur;
-    private $_id_billet;
+    private $_title;
+    private $_content;
+    private $_author;
+    private $_id_post;
     private $_moderation;
 
 
-    public function __construct ($objet)
+    public function __construct ($object)
     {
-//        var_dump($objet);
-        $this->hydrate($objet);
-//        echo 'test : '.$this->getTitre();
+        $this->hydrate($object);
     }
 
-    public function hydrate(array $donnees){
-        foreach ($donnees as $key => $value){
+    public function hydrate(array $datas){
+        foreach ($datas as $key => $value){
             $method = 'set'.ucfirst($key);
 
             if(method_exists($this, $method)){
@@ -27,37 +25,37 @@ class Comment {
         }
     }
 
-    public function setId_commentaire ($id_commentaire){
-        $this->_id_commentaire = $id_commentaire;
+    public function setId_commentaire ($id_comment){
+        $this->_id_comment = $id_comment;
     }
 
     public function setDate ($date)
     {
         $date = new \DateTime($date);
-        $date = $date->format('d-m-Y'.' à '.'H:i:s');
+        $date = $date->format('d-m-Y'.' à '.'H:i:s'); //modification of the date recorded in database in french version
         $this->_date = $date;
     }
 
 
-    public function setTitre ($titre)
+    public function setTitre ($title)
     {
-        $this->_titre = $titre;
+        $this->_title = $title;
     }
 
 
-    public function setContenu ($contenu)
+    public function setContenu ($content)
     {
-        $this->_contenu = $contenu;
+        $this->_content = $content;
     }
 
 
-    public function setAuteur ($auteur)
+    public function setAuteur ($author)
     {
-        $this->_auteur = $auteur;
+        $this->_author = $author;
     }
 
-    public function setId_billet($id_billet){
-        $this->_id_billet = $id_billet;
+    public function setId_billet($id_post){
+        $this->_id_post = $id_post;
     }
 
     public function setModeration($moderation){
@@ -67,7 +65,7 @@ class Comment {
 //getters
     public function getId ()
     {
-        return $this->_id_commentaire;
+        return $this->_id_comment;
     }
 
 
@@ -80,23 +78,23 @@ class Comment {
 
     public function getTitre ()
     {
-        return $this->_titre;
+        return $this->_title;
     }
 
 
     public function getContenu ()
     {
-        return $this->_contenu;
+        return $this->_content;
     }
 
 
     public function getAuteur ()
     {
-        return $this->_auteur;
+        return $this->_author;
     }
 
     public function getIdBillet(){
-        return $this->_id_billet;
+        return $this->_id_post;
     }
 
     public function getModeration(){

@@ -9,14 +9,13 @@ use App\Model\DAO\PostDAO;
 class BilletControler extends Controler
 {
 
-    protected $billet;
+    protected $post;
 
     public function __construct ()
     {
-//        echo __CLASS__. ' construit <br>';
-        $this->billet = new PostDAO();
+        $this->post = new PostDAO();
     }
-    // méthod par défault
+    // default method
     public function index(){
         $this->affichageAll();
     }
@@ -26,27 +25,27 @@ class BilletControler extends Controler
      */
     public function affichageAll(){
         session_start();
-        $donneeBilletAll = $this->billet->readAll();
-        $var_array = array("donneeBillet" => $donneeBilletAll);
-        $this->viewTemplate('app/view/BilletAffichageAllVue.php','app/view/index.php', 'Bienvenue', $var_array);
+        $allPostData = $this->post->readAll();
+        $var_array = array("donneeBillet" => $allPostData);
+        $this->viewTemplate('app/view/AllPostsView.php','app/view/index.php', 'Bienvenue', $var_array);
     }
 
     public function affichage($id_post){
         session_start();
         if(isset($id_post) && is_numeric($id_post)) {
-            if ($this->billet->read($id_post)){
-                $donneeBilletRead = $this->billet->read($id_post);
+            if ($this->post->read($id_post)){
+                $dataPostRead = $this->post->read($id_post);
                 $comment = new CommentDAO();
-                $compteur = $comment->commentCounter($id_post);
+                $counter = $comment->commentCounter($id_post);
 
-                $var_array = array("titreBillet" => $donneeBilletRead[0]->getTitre(),
-                    "auteurBillet" => $donneeBilletRead[0]->getAuteur(),
-                    "dateBillet" => $donneeBilletRead[0]->getDate(),
-                    "contenuBillet" => $donneeBilletRead[0]->getContenu(),
+                $var_array = array("titreBillet" => $dataPostRead[0]->getTitre(),
+                    "auteurBillet" => $dataPostRead[0]->getAuteur(),
+                    "dateBillet" => $dataPostRead[0]->getDate(),
+                    "contenuBillet" => $dataPostRead[0]->getContenu(),
                     "idBillet" => $id_post,
-                    "nbrCommentaire" => $compteur[0]
+                    "nbrCommentaire" => $counter[0]
                 );
-                    $this->viewTemplate('app/view/BilletAffichageVue.php', 'app/view/post.php', $var_array, $var_array);
+                $this->viewTemplate('app/view/PostView.php', 'app/view/post.php',$var_array , $var_array);
             }
             else {
 //                ErreurControler::methodNoExist();
@@ -59,17 +58,19 @@ class BilletControler extends Controler
     }
 
     public function affichage_dernier_billet(){
-        session_start();
-        $lastPost = $this->billet->returnLastPost();
+        if (!isset($_SESSION['pseudo'])){
+            session_start();
+        }
+        $lastPost = $this->post->returnLastPost();
         $comment = new CommentDAO();
-        $compteur = $comment->commentCounter($lastPost[0]->getId());
+        $counter = $comment->commentCounter($lastPost[0]->getId());
         $var_array = array("titreBillet" => $lastPost[0]->getTitre(),
             "auteurBillet" => $lastPost[0]->getAuteur(),
             "dateBillet" => $lastPost[0]->getDate(),
             "contenuBillet" => $lastPost[0]->getContenu(),
             "idBillet" =>$lastPost[0]->getId(),
-            "nbrCommentaire" => $compteur[0]);
-        $this->viewTemplate('app/view/BilletAffichageVue.php', 'app/view/post.php', $var_array, $var_array);
+            "nbrCommentaire" => $counter[0]);
+        $this->viewTemplate('app/view/PostView.php', 'app/view/post.php', $var_array, $var_array);
     }
 
 
