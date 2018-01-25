@@ -17,22 +17,22 @@ class Router
      */
     public function __construct()
     {
-        //place dans un tableau associatif les éléments formant l'url
+        //put in an associative array the elements of url
         $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
-        //place dans un tableau de string les différents éléments délimiter par '/' récupérer dans $url
+        //place in a string array the different elements delimited by '/' retrieve in $url
         $explose = explode('/', $url);
 
-        //remplace les 2 premier élément de $explose par un champs vide
+        //replaces the first 2 elements of $ explose with an empty field
         str_replace('$explose[0]', '','$explose');
         str_replace('$explose[1]','','$explose');
 
         $explose[0] == '';
         $explose[1] == '';
 
-/*reprent chaque index de $explose et verifie si l'élément existe bien et si une valeur autre qu'une chaine vide  lui est associé,
-si ce n'est pas le cas une valeur est alors associé à l'index. sauf pour les paramétre de méthod ou si aucun
-*/
+        /*takes each index of $ explose and checks if the element exists and if a value other than an empty chain is associated with it,
+        if not, then a value is associated with the index.
+        */
         if(!isset($explose[2])|| $explose[2] == ''){
             $this->controller = 'billet';
             $this->method = 'affichageAll';
@@ -41,7 +41,7 @@ si ce n'est pas le cas une valeur est alors associé à l'index. sauf pour les p
         else{
             $this->controller = $explose[2];
             if(!isset($explose[3])|| $explose[3] == ''){
-                $this->method = 'index';//methode par défaut pour tous les controlers
+                $this->method = 'index';//default method for all controllers
                 $this->param = '';
             }
             else {
@@ -59,8 +59,8 @@ si ce n'est pas le cas une valeur est alors associé à l'index. sauf pour les p
 
         $className = 'App\Controler\\'.ucfirst($this->controller).'Controler';
         /**
-         * verifie si la classe(le controleur) $className existe, si elle existe créer une nouvel instance de ce controleur et vérifie ensuite
-         * si la méthode passé existe , si existe l'applique au controleur et ajoute le paramètre passé.
+        check if the class (the controller) $ className exists, if it exists create a new instance of this controller and then check
+        if the passed method exists, apply it to the controller and add the passed parameter.
          */
         if (class_exists($className)){
             $this->controller = new $className();

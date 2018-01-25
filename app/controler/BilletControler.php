@@ -58,9 +58,11 @@ class BilletControler extends Controler
     }
 
     public function affichage_dernier_billet(){
-        if (!isset($_SESSION['pseudo'])){
+//        var_dump($_SESSION);
+        if (session_status() == PHP_SESSION_NONE){
             session_start();
         }
+
         $lastPost = $this->post->returnLastPost();
         $comment = new CommentDAO();
         $counter = $comment->commentCounter($lastPost[0]->getId());
