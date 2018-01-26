@@ -190,21 +190,19 @@ class AdminControler extends Controler
             else {
                 header('Location: /');
             }
-
         }
         else {
             ErreurControler::methodNoExist();
         }
     }
 
-    //retrieves all comments and posters in admin area for possible moderations
+    //retrieves all comments and post it in admin area for possible moderations
     public function commentaireAModerer(){
         session_start();
         if (isset($_SESSION['pseudo'])){
             $comment = new CommentDAO();
             $commentAModerer = $comment->commentReported();
             $var_array = array("moderateComment" => $commentAModerer
-
             );
             $this->viewTemplate('app/view/admin/moderation.php', 'app/view/admin/Template.php', 'Modération des Commentaires', $var_array);
         }
@@ -220,8 +218,7 @@ class AdminControler extends Controler
                     if(isset($_POST['title']) && isset($_POST['content_com'])){
                         $comment = new CommentDAO();
                         $comment->update($id_comment);
-                        var_dump($comment->update($id_comment));
-                        header('Location: /app/admin/commentaireAModerer'); //renvoi au tableau de modération
+                        header('Location: /app/admin/commentaireAModerer');
                     }
                     else {
                         header('Location: /app/admin/home');
@@ -230,15 +227,13 @@ class AdminControler extends Controler
                 else {
                     header('Location: /app/admin/home');
                 }
-
             }
-
         }
         else {
             header('Location: /app/admin/login');
         }
-
     }
+
 //delete a comment from the database
     public function supprimerCommentaire ($id_comment)
     {
@@ -251,6 +246,5 @@ class AdminControler extends Controler
         else {
             header ('Location: /app/admin/login');
         }
-
     }
 }
