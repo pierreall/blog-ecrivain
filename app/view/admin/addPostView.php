@@ -1,4 +1,8 @@
 <!--view for adding a post-->
+<div class="btn-group">
+    <a href="/app/admin/home" class="btn btn-outline-info" role="button" aria-pressed="true">Accueil administration</a>
+</div>
+<hr>
 <form action="/app/admin/ajout" method="post">
     <div class="form-group">
         <label for="title">Titre :</label>

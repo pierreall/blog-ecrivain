@@ -62,8 +62,7 @@ class BilletControler extends Controler
         if (session_status() == PHP_SESSION_NONE){
             session_start();
         }
-        if ($this->post->returnLastPost()){
-            $lastPost = $this->post->returnLastPost();
+        $lastPost = $this->post->returnLastPost();
             $comment = new CommentDAO();
             $counter = $comment->commentCounter($lastPost[0]->getId());
             $var_array = array("titreBillet" => $lastPost[0]->getTitre(),
@@ -74,11 +73,7 @@ class BilletControler extends Controler
                 "nbrCommentaire" => $counter[0]);
             $this->viewTemplate('app/view/PostView.php', 'app/view/post.php', $var_array, $var_array);
         }
-        else {
-            header('Location: /app/erreur/noExist');
-        }
 
-    }
 
 
 }

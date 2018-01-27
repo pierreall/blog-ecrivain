@@ -63,6 +63,11 @@ class CommentDAO extends Model
         $req->execute(array($id_comment));
     }
 
+    public function deleteAll($id_post){
+        $req = $this->getPDO()->prepare('DELETE FROM commentaire WHERE id_billet= ?');
+        $req->execute(array($id_post));
+    }
+
     public function reportComment($id_comment){
         $req = $this->getPDO()->prepare('UPDATE commentaire SET moderation = TRUE  WHERE id_commentaire = ?');
         $req->execute(array($id_comment));

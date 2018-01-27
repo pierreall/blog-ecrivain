@@ -165,8 +165,9 @@ class AdminControler extends Controler
             $tab = $post->returnLastPost();
 
             if ($id_post !== $tab[0]->getId()){
-
                 $post->delete($id_post);
+                $comment = new CommentDAO();
+                $comment->deleteAll($id_post);
                 header('Location: /app/admin/home');
 
             }

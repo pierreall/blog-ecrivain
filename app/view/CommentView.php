@@ -11,6 +11,10 @@
 </header>
 
 <div class="container">
+    <div class="btn-group">
+        <a href="/app/billet/affichage/<?= $IdBillet ?>" class="btn btn-outline-info" role="button" aria-pressed="true">Retourner sur le Billet</a>
+    </div>
+    <hr>
     <form action="/app/commentaire/affichageCommentaire/<?= $IdBillet ?>" method="post">
         <div class="form-group">
             <label for="author">Pseudo/ ou nom</label>

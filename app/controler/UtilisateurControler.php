@@ -1,5 +1,5 @@
 <?php
-
+/*
 namespace App\Controler;
 
 use App\Model\DAO\UserDAO;
@@ -33,4 +33,4 @@ class UtilisateurControler {
     }
 
 }
-
+*/
