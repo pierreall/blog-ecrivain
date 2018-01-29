@@ -82,12 +82,10 @@ class AdminControler extends Controler
                     $_SESSION['pseudo'] = $row[0]['pseudo'];
                     header('Location: /app/admin/home');
                 } else {
-                    echo "verifiez vos données";
                     header('Location: /app/admin/login');
                     die();
                 }
             } else {
-                echo "cet utilisateur n'existe pas.";
                 header('Location: /app/admin/login');
             }
 
