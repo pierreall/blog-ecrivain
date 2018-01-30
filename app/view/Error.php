@@ -69,7 +69,7 @@
     </div>
 </header>
 <div class="container">
-    <?= $contenu ?>
+    <?= $content ?>
 </div>
 
 

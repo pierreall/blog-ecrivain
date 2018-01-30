@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
                 <div class="post-heading">
-                    <h1><?= $titreBillet ?></h1>
+                    <h1><?= $titlePost ?></h1>
                 </div>
             </div>
         </div>
@@ -12,10 +12,10 @@
 
 <div class="container">
     <div class="btn-group">
-        <a href="/app/billet/affichage/<?= $IdBillet ?>" class="btn btn-outline-info" role="button" aria-pressed="true">Retourner sur le Billet</a>
+        <a href="/app/billet/affichage/<?= $IdPost ?>" class="btn btn-outline-info" role="button" aria-pressed="true">Retourner sur le Billet</a>
     </div>
     <hr>
-    <form action="/app/commentaire/affichageCommentaire/<?= $IdBillet ?>" method="post">
+    <form action="/app/commentaire/affichageCommentaire/<?= $IdPost ?>" method="post">
         <div class="form-group">
             <label for="author">Pseudo/ ou nom</label>
             <input type="text" name="author" id="author" placeholder="Votre pseudo" class="form-control">
@@ -38,23 +38,23 @@
 
 <hr>
 <br>
-<?php foreach ($array['donneeCommentaire'] as $commentaire) {?>
+<?php foreach ($array['dataComment'] as $comment) {?>
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
                 <div class="post-preview border alert alert-info">
 
                     <h2 class="post-title" style="font-size: 1.25em;">
-                        <?= $commentaire->getTitre() ?>
+                        <?= $comment->getTitre() ?>
                     </h2>
                     <p style="font-size: 0.8em;">
-                        <?= $commentaire->getContenu();?>
+                        <?= $comment->getContenu();?>
                     </p>
                     <p class="post-meta" style="font-size: 0.7em">Posté par
-                        <?= $commentaire->getAuteur() ?>
-                        le <?= $commentaire->getDate() ?>
-                    <!--<?= var_dump($commentaire) ?>-->
-                        <br> <a href="/app/admin/signalement/<?= $commentaire->getId () ?>"><i class="fa fa-exclamation-triangle" aria-hidden="true">Signaler ce message</i></a>
+                        <?= $comment->getAuteur() ?>
+                        le <?= $comment->getDate() ?>
+
+                        <br> <a href="/app/admin/signalement/<?= $comment->getId () ?>"><i class="fa fa-exclamation-triangle" aria-hidden="true">Signaler ce message</i></a>
 <!--                    <hr>-->
                     </p>
                 </div>
@@ -64,5 +64,3 @@
     <br>
 <?php } ?>
 
-
-<!--/app/commentaire/affichageCommentaire/--><?//= $IdBillet ?>

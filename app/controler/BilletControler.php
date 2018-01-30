@@ -28,7 +28,7 @@ class BilletControler extends Controler
      */
     public function affichageAll(){
         $allPostData = $this->post->readAll();
-        $var_array = array("donneeBillet" => $allPostData);
+        $var_array = array("dataPost" => $allPostData);
         $this->viewTemplate('app/view/AllPostsView.php','app/view/index.php', 'Bienvenue', $var_array);
     }
 
@@ -40,12 +40,12 @@ class BilletControler extends Controler
                 $comment = new CommentDAO();
                 $counter = $comment->commentCounter($id_post);
 
-                $var_array = array("titreBillet" => $dataPostRead[0]->getTitre(),
-                    "auteurBillet" => $dataPostRead[0]->getAuteur(),
-                    "dateBillet" => $dataPostRead[0]->getDate(),
-                    "contenuBillet" => $dataPostRead[0]->getContenu(),
-                    "idBillet" => $id_post,
-                    "nbrCommentaire" => $counter[0]
+                $var_array = array("titlePost" => $dataPostRead[0]->getTitre(),
+                    "authorPost" => $dataPostRead[0]->getAuteur(),
+                    "datePost" => $dataPostRead[0]->getDate(),
+                    "contentPost" => $dataPostRead[0]->getContenu(),
+                    "idPost" => $id_post,
+                    "nbrComment" => $counter[0]
                 );
                 $this->viewTemplate('app/view/PostView.php', 'app/view/post.php','', $var_array);
             }
@@ -65,12 +65,12 @@ class BilletControler extends Controler
             $lastPost = $this->post->returnLastPost();
             $comment = new CommentDAO();
             $counter = $comment->commentCounter($lastPost[0]->getId());
-            $var_array = array("titreBillet" => $lastPost[0]->getTitre(),
-                "auteurBillet" => $lastPost[0]->getAuteur(),
-                "dateBillet" => $lastPost[0]->getDate(),
-                "contenuBillet" => $lastPost[0]->getContenu(),
-                "idBillet" =>$lastPost[0]->getId(),
-                "nbrCommentaire" => $counter[0]);
+            $var_array = array("titlePost" => $lastPost[0]->getTitre(),
+                "authorPost" => $lastPost[0]->getAuteur(),
+                "datePost" => $lastPost[0]->getDate(),
+                "contentPost" => $lastPost[0]->getContenu(),
+                "idPost" =>$lastPost[0]->getId(),
+                "nbrComment" => $counter[0]);
             $this->viewTemplate('app/view/PostView.php', 'app/view/post.php','', $var_array);
         }
         else {

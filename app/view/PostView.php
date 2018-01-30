@@ -4,10 +4,10 @@
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
                 <div class="post-heading">
-                    <h1><?= $titreBillet ?></h1>
+                    <h1><?= $titlePost ?></h1>
                     <span class="meta">Posté par
-                        <?= $auteurBillet ?>
-                        le <?= $dateBillet ?></span>
+                        <?= $authorPost ?>
+                        le <?= $datePost ?></span>
                 </div>
             </div>
         </div>
@@ -19,9 +19,9 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
-                <?= $contenuBillet ?>
+                <?= $contentPost ?>
                 <hr>
-                <a href="/app/commentaire/affichageCommentaire/<?= $idBillet ?>"><?= $nbrCommentaire ?> Commentaire(s)</a>
+                <a href="/app/commentaire/affichageCommentaire/<?= $idPost ?>"><?= $nbrComment ?> Commentaire(s)</a>
             </div>
         </div>
     </div>

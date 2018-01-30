@@ -69,7 +69,7 @@
     </div>
   </div>
 </header>
-<?= $contenu ?>
+<?= $content ?>
 
 <!-- Pager -->
 <div class="clearfix">

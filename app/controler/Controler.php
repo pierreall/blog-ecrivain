@@ -13,7 +13,7 @@ class Controler {
         }
         ob_start();
         require $url_view;
-        $contenu = ob_get_contents();
+        $content = ob_get_contents();
         ob_end_clean();
         $title = $title;
         require $url_template;

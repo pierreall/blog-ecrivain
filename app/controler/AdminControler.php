@@ -52,7 +52,7 @@ class AdminControler extends Controler
         if(isset($_SESSION['pseudo'])) {
             $post = new PostDAO();
             $allPostData = $post->readAll();
-            $var_array = array("donneeBillet" => $allPostData);
+            $var_array = array("dataPost" => $allPostData);
             $this->viewTemplate('app/view/admin/Welcome.php', 'app/view/admin/Template.php', 'Accueil Administration', $var_array);
         }
         else {
@@ -69,7 +69,7 @@ class AdminControler extends Controler
             $mdp = htmlspecialchars($_POST['password']);
 
             $user = new UserDAO();
-            $row = $user->verif(); //check in database
+            $row = $user->verif(); //check if pseudo exist in database
 
 
             if (!empty($row)) {
@@ -77,7 +77,7 @@ class AdminControler extends Controler
                 $isOk = password_verify($mdp, $row[0]['password']);
 
                 if ($isOk) {
-                    $_SESSION['pseudo'] = $row[0]['pseudo'];
+                    $_SESSION['pseudo'] = $row[0]['pseudo'];//create session pseudo variable and give it pseudo retrieve in database
                     header('Location: /app/admin/home');
                 } else {
                     header('Location: /app/admin/login');
@@ -117,8 +117,8 @@ class AdminControler extends Controler
                 if ($post->read($id_post)) {
                     $dataPostRead = $post->read($id_post);
                     $var_array = array("title" => $dataPostRead[0]->getTitre(),
-                        "contenuBillet" => $dataPostRead[0]->getContenu(),
-                        "idBillet" => $id_post);
+                        "contentPost" => $dataPostRead[0]->getContenu(),
+                        "idPost" => $id_post);
                     $this->viewTemplate('app/view/admin/updatePostView.php', 'app/view/admin/Template.php', '', $var_array);
                 } else {
                     ErreurControler::methodNoExist();
@@ -205,10 +205,9 @@ class AdminControler extends Controler
         if(isset($_SESSION['pseudo'])){
             if (isset($id_comment) && is_numeric($id_comment)){
                 $com = new CommentDAO();
-                if ($com->readUnique($id_comment)){
+                if ($com->readUnique($id_comment)){//check if comment exist
                     if(isset($_POST['title']) && isset($_POST['content_com'])){
-                        $comment = new CommentDAO();
-                        $comment->update($id_comment);
+                        $com->update($id_comment);//update comment
                         header('Location: /app/admin/commentaireAModerer');
                     }
                     else {

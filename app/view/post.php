@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <title><?= $titreBillet ?></title>
+  <title><?= $titlePost ?></title>
 
   <!-- Bootstrap core CSS -->
   <link href="/app/view/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -56,7 +56,7 @@
 </nav>
 
 
-<?= $contenu ?>
+<?= $content ?>
 
 
 <hr>

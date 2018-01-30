@@ -1,17 +1,17 @@
-<?php if(!empty($array['donneeBillet'])) : ?>
-    <?php foreach ($array['donneeBillet'] as $billet) {?>
+<?php if(!empty($array['dataPost'])) : ?>
+    <?php foreach ($array['dataPost'] as $post) {?>
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-md-10 mx-auto">
                     <div class="post-preview">
-                        <?php echo '<a href="/app/billet/affichage/'.$billet->getId().'">';?>
+                        <?php echo '<a href="/app/billet/affichage/'.$post->getId().'">';?>
                         <h2 class="post-title">
-                            <?= $billet->getTitre() ?>
+                            <?= $post->getTitre() ?>
                         </h2>
                         </a>
                         <p class="post-meta">Posté par
-                            <strong><?= $billet->getAuteur() ?></strong>
-                            le <?= $billet->getDate() ?></p>
+                            <strong><?= $post->getAuteur() ?></strong>
+                            le <?= $post->getDate() ?></p>
                     </div>
                 </div>
             </div>

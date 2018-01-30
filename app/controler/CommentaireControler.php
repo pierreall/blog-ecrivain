@@ -30,15 +30,15 @@ class CommentaireControler extends Controler{
             $comment = new CommentDAO();
             if(isset($_POST['title']) && isset($_POST['content_com'])){
 
-                $comment->create($id_post);
+                $comment->create($id_post);//add comment in database
             }
 
 
             $allCommentsData = $comment->read($id_post);
             $post_com = $post->read($id_post);
-            $var_array = array("donneeCommentaire" => $allCommentsData,
-                "IdBillet" => $id_post,
-                "titreBillet" => 'Commentaire(s) : '.$post_com[0]->getTitre()
+            $var_array = array("dataComment" => $allCommentsData,
+                "IdPost" => $id_post,
+                "titlePost" => 'Commentaire(s) : '.$post_com[0]->getTitre()
             );
 
             $this->viewTemplate('app/view/commentView.php','app/view/post.php', '', $var_array);
