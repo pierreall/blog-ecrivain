@@ -13,6 +13,9 @@ class BilletControler extends Controler
 
     public function __construct ()
     {
+        if (session_status() == PHP_SESSION_NONE){
+            session_start();
+        }
         $this->post = new PostDAO();
     }
     // default method
@@ -24,14 +27,13 @@ class BilletControler extends Controler
      *  default method, display all tickets (homepage)
      */
     public function affichageAll(){
-        session_start();
         $allPostData = $this->post->readAll();
         $var_array = array("donneeBillet" => $allPostData);
         $this->viewTemplate('app/view/AllPostsView.php','app/view/index.php', 'Bienvenue', $var_array);
     }
 
+    //display a post
     public function affichage($id_post){
-        session_start();
         if(isset($id_post) && is_numeric($id_post)) {
             if ($this->post->read($id_post)){
                 $dataPostRead = $this->post->read($id_post);
@@ -45,7 +47,7 @@ class BilletControler extends Controler
                     "idBillet" => $id_post,
                     "nbrCommentaire" => $counter[0]
                 );
-                $this->viewTemplate('app/view/PostView.php', 'app/view/post.php',$var_array , $var_array);
+                $this->viewTemplate('app/view/PostView.php', 'app/view/post.php','', $var_array);
             }
             else {
 //                ErreurControler::methodNoExist();
@@ -57,12 +59,10 @@ class BilletControler extends Controler
         }
     }
 
+    //display last post
     public function affichage_dernier_billet(){
-//        var_dump($_SESSION);
-        if (session_status() == PHP_SESSION_NONE){
-            session_start();
-        }
-        $lastPost = $this->post->returnLastPost();
+        if (!empty($this->post->returnLastPost())) {
+            $lastPost = $this->post->returnLastPost();
             $comment = new CommentDAO();
             $counter = $comment->commentCounter($lastPost[0]->getId());
             $var_array = array("titreBillet" => $lastPost[0]->getTitre(),
@@ -71,8 +71,13 @@ class BilletControler extends Controler
                 "contenuBillet" => $lastPost[0]->getContenu(),
                 "idBillet" =>$lastPost[0]->getId(),
                 "nbrCommentaire" => $counter[0]);
-            $this->viewTemplate('app/view/PostView.php', 'app/view/post.php', $var_array, $var_array);
+            $this->viewTemplate('app/view/PostView.php', 'app/view/post.php','', $var_array);
         }
+        else {
+            header('Location: /');
+        }
+
+    }
 
 
 

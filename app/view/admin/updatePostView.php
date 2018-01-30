@@ -1,10 +1,20 @@
 <!--view for updating the posts-->
+<div class="btn-group">
+    <a href="/app/admin/home" class="btn btn-outline-info" role="button" aria-pressed="true">Accueil administration</a>
+</div>
+<hr>
 <form action="/app/admin/validationMiseAJour/<?= $idBillet ?>" method="post">
-    <label for="title">Titre :</label>
-    <input type="text" name="title" id="title" value="<?= $title ?>">
-    <textarea name="content_post" id="content" cols="30" rows="10">
+    <div class="form-group">
+        <label for="title">Titre :</label>
+        <input type="text" name="title" id="title" value="<?= $title ?>" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="content">Contenu :</label>
+         <textarea name="content_post" id="content" cols="30" rows="10">
         <?= $contenuBillet ?>
     </textarea>
-    <input type="submit" value="Mettre à jour le Billet">
+    </div>
+
+    <input type="submit" value="Mettre à jour le Billet" class="btn btn-outline-success">
 </form>
 

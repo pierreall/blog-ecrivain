@@ -12,9 +12,7 @@ class Router
     protected $method;
 
 
-    /**
-     * Router constructor.
-     */
+
     public function __construct()
     {
         //put in an associative array the elements of url
@@ -23,12 +21,6 @@ class Router
         //place in a string array the different elements delimited by '/' retrieve in $url
         $explose = explode('/', $url);
 
-        //replaces the first 2 elements of $ explose with an empty field
-        str_replace('$explose[0]', '','$explose');
-        str_replace('$explose[1]','','$explose');
-
-        $explose[0] == '';
-        $explose[1] == '';
 
         /*takes each index of $ explose and checks if the element exists and if a value other than an empty chain is associated with it,
         if not, then a value is associated with the index.
@@ -70,26 +62,17 @@ class Router
 
                 $this->controller->$method($this->param);
 
-
             }
             else {
                 ErreurControler::methodNoExist();
             }
         }
         else {
-//            $this->controller = new ErreurControler();
             ErreurControler::methodNoExist();
         }
 
     }
 
-    public function getController(){
-        return $this->controller;
-    }
-
-    public function getMethod(){
-        return $this->method;
-    }
 
 }
 

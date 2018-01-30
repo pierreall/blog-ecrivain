@@ -13,8 +13,11 @@ class AdminControler extends Controler
 
     public function __construct ()
     {
-
+        if (session_status() == PHP_SESSION_NONE){
+            session_start();
+        }
     }
+
 // default method
     public function index(){
         if(isset($_SESSION['pseudo'])){
@@ -29,7 +32,6 @@ class AdminControler extends Controler
 //login to admin area
     public function login()
     {
-        session_start();
         if (!isset($_SESSION['pseudo'])){
             $this->viewTemplate('app/view/admin/login.php', 'app/view/admin/Template.php', 'Connection administration');
         }
@@ -37,18 +39,16 @@ class AdminControler extends Controler
             header('Location: /app/admin/home');
         }
     }
+
     //logout session and admin area
     public function logout(){
-        session_start();
         session_destroy();
         header('Location: /');
 
     }
 
-
 //admin home page, moderate table for post
     public function home(){
-        session_start();
         if(isset($_SESSION['pseudo'])) {
             $post = new PostDAO();
             $allPostData = $post->readAll();
@@ -64,14 +64,12 @@ class AdminControler extends Controler
     //check if the login of the administrator area correspond to those registered in the database
     public function verif(){
 
-        session_start();
-
         if(isset($_POST['pseudo']) && isset($_POST['password'])){
             $pseudo = htmlspecialchars($_POST['pseudo']);
             $mdp = htmlspecialchars($_POST['password']);
 
             $user = new UserDAO();
-            $row = $user->verif();
+            $row = $user->verif(); //check in database
 
 
             if (!empty($row)) {
@@ -95,9 +93,9 @@ class AdminControler extends Controler
         }
 
     }
+
     //add a new post
     public function ajout(){
-        session_start();
         if (isset($_SESSION['pseudo'])){
             $this->viewTemplate('app/view/admin/addPostView.php','app/view/admin/Template.php', 'Ajout d\'un nouveau Billet');
             if(isset($_POST['title']) && isset($_POST['content_post'])){
@@ -109,10 +107,10 @@ class AdminControler extends Controler
             header('Location: /app/admin/login');
         }
     }
+
 //update of a blog post: retrieves the contents of the post and displays it in a WYSIWYG interface
     public function miseAJour($id_post)
     {
-        session_start();
         if (isset($_SESSION['pseudo'])){
             if (isset($id_post) && is_numeric($id_post)) {
                 $post = new PostDAO();
@@ -121,10 +119,13 @@ class AdminControler extends Controler
                     $var_array = array("title" => $dataPostRead[0]->getTitre(),
                         "contenuBillet" => $dataPostRead[0]->getContenu(),
                         "idBillet" => $id_post);
-                    $this->viewTemplate('app/view/admin/updatePostView.php', 'app/view/admin/Template.php', $var_array, $var_array);
+                    $this->viewTemplate('app/view/admin/updatePostView.php', 'app/view/admin/Template.php', '', $var_array);
                 } else {
                     ErreurControler::methodNoExist();
                 }
+            }
+            else {
+                ErreurControler::methodNoExist();
             }
         }
         else {
@@ -132,9 +133,9 @@ class AdminControler extends Controler
         }
 
     }
+
 //update of a blog post : records in database the change made on the post.
     public function validationMiseAJour($id_post){
-        session_start();
         if(isset($_SESSION['pseudo'])){
             if (isset($id_post) && is_numeric($id_post)){
 
@@ -157,27 +158,20 @@ class AdminControler extends Controler
 
 //delete a blog post
     public function effacement($id_post){
-        session_start();
         if (isset($_SESSION['pseudo'])){
             $post = new PostDAO();
-            $tab = $post->returnLastPost();
 
-            if ($id_post !== $tab[0]->getId()){
-                $post->delete($id_post);
-                $comment = new CommentDAO();
-                $comment->deleteAll($id_post);
-                header('Location: /app/admin/home');
-
-            }
-            else {
-                header('Location: /app/admin/home/?suppr=interdit');
-            }
+            $post->delete($id_post);
+            $comment = new CommentDAO();
+            $comment->deleteAll($id_post);
+            header('Location: /app/admin/home');
 
         }
         else {
             header('Location: /app/admin/login');
         }
     }
+
     //method called when a user  signals a comment
     public function signalement($id_comment){
         if (isset($id_comment) && is_numeric($id_comment)){
@@ -197,7 +191,6 @@ class AdminControler extends Controler
 
     //retrieves all comments and post it in admin area for possible moderations
     public function commentaireAModerer(){
-        session_start();
         if (isset($_SESSION['pseudo'])){
             $comment = new CommentDAO();
             $commentAModerer = $comment->commentReported();
@@ -209,7 +202,6 @@ class AdminControler extends Controler
 
     // update in database moderate comments
     public function validationEditComment($id_comment){
-        session_start();
         if(isset($_SESSION['pseudo'])){
             if (isset($id_comment) && is_numeric($id_comment)){
                 $com = new CommentDAO();
@@ -236,7 +228,6 @@ class AdminControler extends Controler
 //delete a comment from the database
     public function supprimerCommentaire ($id_comment)
     {
-        session_start();
         if (isset($_SESSION['pseudo'])){
             $comment = new CommentDAO();
             $comment->delete($id_comment);

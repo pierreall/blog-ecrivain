@@ -6,8 +6,8 @@
                 <div class="post-heading">
                     <h1><?= $titreBillet ?></h1>
                     <span class="meta">Posté par
-                <a href="#"><?= $auteurBillet ?></a>
-                le <?= $dateBillet ?></span>
+                        <?= $auteurBillet ?>
+                        le <?= $dateBillet ?></span>
                 </div>
             </div>
         </div>
@@ -26,3 +26,4 @@
         </div>
     </div>
 </article>
+
