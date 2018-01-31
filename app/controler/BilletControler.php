@@ -50,7 +50,6 @@ class BilletControler extends Controler
                 $this->viewTemplate('app/view/PostView.php', 'app/view/post.php','', $var_array);
             }
             else {
-//                ErreurControler::methodNoExist();
                 header('Location: /app/erreur/noExist');
             }
         }

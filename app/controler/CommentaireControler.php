@@ -32,7 +32,9 @@ class CommentaireControler extends Controler{
 
                 $comment->create($id_post);//add comment in database
             }
-
+            /*----------------------------------------------*/
+            /*---------------display commments--------------*/
+            /*----------------------------------------------*/
 
             $allCommentsData = $comment->read($id_post);
             $post_com = $post->read($id_post);

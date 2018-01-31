@@ -24,7 +24,7 @@ class PostDAO extends Model
     public function read ($id_post)
     {
         $req = $this->getPDO()->prepare('SELECT * FROM billet WHERE id_billet = ?');
-       $req->execute(array($id_post));
+        $req->execute(array($id_post));
 
         $array = $req->fetchAll();
 
